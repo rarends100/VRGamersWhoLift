@@ -1,3 +1,6 @@
+//File configs middleware for the app
+
+//creates WebApplicationBuilder object
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,7 +23,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+app.MapControllerRoute( //Identifies Default route
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
