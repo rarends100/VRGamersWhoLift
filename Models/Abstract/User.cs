@@ -5,16 +5,23 @@
 
         public User()
         {
-            UserID = string.Empty;
-            UserFirstName = string.Empty;
-            UserMiddleName = string.Empty;
-            UserLastName = string.Empty;
+            userID = string.Empty;
+            firstName = string.Empty;
+            middleName = string.Empty;
+            lastName = string.Empty;
+            email = string.Empty;
+            password = string.Empty;
+            userType = string.Empty;
         }
 
-        private string UserID { get; set; }
-        private string UserFirstName { get; set; }
-        private string UserMiddleName { get; set; }
-        private string UserLastName { get; set; }
+        private string userID { get; set; }
+        private string firstName { get; set; }
+        private string middleName { get; set; }
+        private string lastName { get; set; }
+        private string email { get; set; }
+        private string password { get; set; }
+        private string userType {  get; set; }
+
 
     }
 }
