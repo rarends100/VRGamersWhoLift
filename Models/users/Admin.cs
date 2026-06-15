@@ -1,12 +1,14 @@
-﻿using VRGamersWhoLift.Models.Abstract;
+﻿using System.ComponentModel.DataAnnotations;
+using VRGamersWhoLift.Models.Abstract;
 
 namespace VRGamersWhoLift.Models.users
 {
     public class Admin : User
     {
         public Admin() {
-            employeeID = string.Empty;
+            EmployeeID = string.Empty;
         }
-        private string employeeID {  get; set; }
+        [Required]
+        private string EmployeeID {  get; set; }
     }
 }
