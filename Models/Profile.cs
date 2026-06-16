@@ -6,16 +6,12 @@ namespace VRGamersWhoLift.Models
     {
         public Profile()
         {
-            ProfileID = -1;
-            Name = "no name";
-            UserId = -1;
+            ProfileUsernameID = "";
             User = null!;
         }
-        public int ProfileID {  get; set; }
-        
 
         //fully defined one-to-one rel by convention -> one 
-        public int UserId { get; set; }
+        public string ProfileUsernameID { get; set; } //Username
 
         //Navigation prop back to User 
         public User User { get; set; }

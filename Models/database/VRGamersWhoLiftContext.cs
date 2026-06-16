@@ -9,6 +9,7 @@ namespace VRGamersWhoLift.Models.database
         public VRGamersWhoLiftContext(DbContextOptions<VRGamersWhoLiftContext> options) : base (options)
         {  }
 
+        public DbSet<Profile> profiles { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!; //DbSet<Entity> class enables DbContext class to work with the collections of my entity classes
         //Any property in your entity with a name of Id (or ID) or the entity name followed by Id (or ID) is a primary key
         //bare minimum up to here is in
@@ -24,49 +25,73 @@ namespace VRGamersWhoLift.Models.database
             //p2 https://stackoverflow.com/questions/46027385/derived-types-in-entity-framework
 
             //one to one rel behavior fk_User_profile
+            modelBuilder.Entity<Profile>()
+                .HasKey(p => p.ProfileUsernameID);
+
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Profile)
                 .WithOne(p => p.User)
-                .HasForeignKey<Profile>(p => p.UserId)
+                .HasForeignKey<Profile>(p => p.ProfileUsernameID)
+                .IsRequired()
+                .HasPrincipalKey<User>(u => u.UserName)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Admin>().HasData(
-            new Admin
-            {
-                UserID = 1, //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
-                FirstName = "Robert",
-                MiddleName = "Charles",
-                LastName = "Arends",
-                Email = "robert.arends100@gitmail.com",
-                Password = "Password",
-                UserType = "a"
+                new Admin
+                {
+                    UserName = "rarends", //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
+                    FirstName = "Robert",
+                    MiddleName = "Charles",
+                    LastName = "Arends",
+                    Email = "robert.arends100@gitmail.com",
+                    Password = "Password",
+                    Role = "a"
 
-            }
+                }
             );
 
             modelBuilder.Entity<Member>().HasData(
                 new Member
                 {
-                    UserID = 2, //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
+                    UserName = "swilkins", //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
                     FirstName = "Samantha",
                     MiddleName = "Eve",
                     LastName = "Wilkins",
                     Email = "Samantha.Wilkins@gitmail.com",
                     Password = "Password",
-                    UserType = "m"
+                    Role = "m"
                 }    
             );
 
             modelBuilder.Entity<Coach>().HasData(
                 new Coach
                 {
-                    UserID = 3,
+                    UserName = "ngreyson",
                     FirstName = "Nolan",
                     MiddleName = "",
                     LastName = "Greyson",
                     Email = "nolan.Greyson@viltrum.planet",
                     Password = "Password",
-                    UserType = "c"
+                    Role = "c"
+                }
+            );
+
+            //Profile data
+            modelBuilder.Entity<Profile>().HasData(
+                new Profile
+                {
+                    Name = "robert_arends",
+                    ProfileUsernameID = "rarends"
+                },
+                new Profile
+                {
+                    Name = "samantha_wilkins",
+                    ProfileUsernameID = "swilkins"
+                },
+                new Profile
+                {
+                    Name = "nolan_greyson",
+                    ProfileUsernameID = "ngreyson"
                 }
             );
             
