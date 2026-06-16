@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VRGamersWhoLift.Models.database;
 
@@ -10,9 +11,11 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20260616152247_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,29 +68,6 @@ namespace VRGamersWhoLift.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
 
                     b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>
-                {
-                    b.Property<int>("ProfileID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfileID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProfileID");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Profile");
                 });
 
             modelBuilder.Entity("VRGamersWhoLift.Models.users.Admin", b =>
@@ -145,23 +125,6 @@ namespace VRGamersWhoLift.Migrations
                             Password = "Password",
                             UserType = "m"
                         });
-                });
-
-            modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>
-                {
-                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "User")
-                        .WithOne("Profile")
-                        .HasForeignKey("VRGamersWhoLift.Models.Profile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VRGamersWhoLift.Models.Abstract.User", b =>
-                {
-                    b.Navigation("Profile")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

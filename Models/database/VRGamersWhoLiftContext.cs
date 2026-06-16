@@ -23,6 +23,13 @@ namespace VRGamersWhoLift.Models.database
             modelBuilder.Entity<Coach>().HasBaseType<User>(); //Expicitly define the subclasses of the entity in the OnModelCreating() method https://stackoverflow.com/questions/37398141/ef7-migrations-the-corresponding-clr-type-for-entity-type-is-not-instantiab
             //p2 https://stackoverflow.com/questions/46027385/derived-types-in-entity-framework
 
+            //one to one rel behavior fk_User_profile
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Profile)
+                .WithOne(p => p.User)
+                .HasForeignKey<Profile>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Admin>().HasData(
             new Admin
             {

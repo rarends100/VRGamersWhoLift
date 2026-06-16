@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace VRGamersWhoLift.Models.Abstract
 {
-    public abstract class User
+    public abstract class User : IdentityUser
     {
 
         public User()
@@ -11,9 +12,9 @@ namespace VRGamersWhoLift.Models.Abstract
             FirstName = string.Empty;
             MiddleName = string.Empty;
             LastName = string.Empty;
-            Email = string.Empty;
             Password = string.Empty;
             UserType = string.Empty;
+            Profile = null!;
         }
 
         public int UserID { get; set; }
@@ -22,11 +23,14 @@ namespace VRGamersWhoLift.Models.Abstract
         public string MiddleName { get; set; }
         [Required(ErrorMessage = "Please enter a last name.")]
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Please enter an email.")]
-        public string Email { get; set; }
+
         [Required(ErrorMessage = "Please enter a password.")]
         public string Password { get; set; }
         public string UserType {  get; set; }
+
+        //one to one - one -> Navigation prop (this is how EF knows the rel since it is code first by design)
+        public Profile Profile { get; set; }
+
 
 
     }
