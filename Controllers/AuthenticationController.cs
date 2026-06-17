@@ -66,7 +66,7 @@ namespace VRGamersWhoLift.Controllers
                         context.Profile.Add(profile);
                         context.SaveChanges();//pg 484
                         Console.WriteLine("User and profile for new user based on the username, added to the database.");
-                        await signInManager.SignInAsync(member, isPersistent: false);
+                        await signInManager.SignInAsync(member, isPersistent: false); //Sign User In
                         return RedirectToAction("Index", "Home");
 
                         
@@ -89,5 +89,49 @@ namespace VRGamersWhoLift.Controllers
             return View(model);
            
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult Login(string returnUrl = "")
+        {
+            LoginViewModel model = new LoginViewModel(returnUrl);
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        { 
+            if (ModelState.IsValid) //need it to be valid or errors when data is null
+            {
+
+
+                var result = await signInManager.PasswordSignInAsync(
+                    model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false
+                    ); //isPersistent is a cookie within the Identity Framework - To my understanding - though I could in theory make a manual login and cookie, but that would be a ton of work, and likely against norms
+                if (result.Succeeded)
+                {
+                    if (!String.IsNullOrEmpty(model.ReturnUrl) &&
+                        Url.IsLocalUrl(model.ReturnUrl)) //pg 676
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            ModelState.AddModelError("", "Invalid username/password.");
+            return View(model);
+            
+        }
+            
+                
+                
+
     }
 }
