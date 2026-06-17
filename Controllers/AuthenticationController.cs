@@ -18,7 +18,7 @@ namespace VRGamersWhoLift.Controllers
 
         //TODO: Register, login, and Logout methods here
 
-        public IActionResult Index()
+        public IActionResult Register()
         {
             return View();
         }
