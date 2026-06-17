@@ -9,7 +9,7 @@ namespace VRGamersWhoLift.Models.ViewModels
         [Required (ErrorMessage = "An email is required.")]
         public string Email {  get; set; } = string.Empty;
         [Required(ErrorMessage = "A password is required.")]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password)] //Ensures password feilds use the password options specified in the Program.cs middleware configuration for the password options from the identity framework
         public string Password { get; set; } = string.Empty;
         [Required(ErrorMessage = "Confirm password is required.")]
         [DataType(DataType.Password)]

@@ -17,6 +17,18 @@ namespace VRGamersWhoLift.Models.Abstract
             Profile = null!;
         }
 
+        public User(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Role, string Password, Profile Profile)
+        {
+            this.UserName = UserName;
+            this.FirstName = FirstName;
+            this.MiddleName = MiddleName;
+            this.LastName = LastName;
+            this.Email = Email;
+            this.Role = Role;
+            this.Password = Password;
+            this.Profile = Profile;
+        }
+
         public override string? UserName { get => base.UserName; set => base.UserName = value; }
 
         [Required(ErrorMessage = "Please enter a first name.")]

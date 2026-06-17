@@ -10,6 +10,14 @@ namespace VRGamersWhoLift.Models
             User = null!;
         }
 
+        public Profile(string profileUsernameID, string name)
+        {
+            ProfileUsernameID = profileUsernameID;
+            Name = name;
+        }
+
+
+
         //fully defined one-to-one rel by convention -> one 
         public string ProfileUsernameID { get; set; } //Username
 
