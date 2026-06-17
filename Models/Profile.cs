@@ -10,10 +10,11 @@ namespace VRGamersWhoLift.Models
             User = null!;
         }
 
-        public Profile(string profileUsernameID, string name)
+        public Profile(string ProfileUsernameID, string Name, User user)
         {
-            ProfileUsernameID = profileUsernameID;
-            Name = name;
+            this.ProfileUsernameID = ProfileUsernameID;
+            this.Name = Name;
+            this.User = user;
         }
 
 

@@ -166,7 +166,7 @@ namespace VRGamersWhoLift.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "profiles",
+                name: "Profile",
                 columns: table => new
                 {
                     ProfileUsernameID = table.Column<string>(type: "nvarchar(256)", nullable: false),
@@ -174,9 +174,9 @@ namespace VRGamersWhoLift.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_profiles", x => x.ProfileUsernameID);
+                    table.PrimaryKey("PK_Profile", x => x.ProfileUsernameID);
                     table.ForeignKey(
-                        name: "FK_profiles_AspNetUsers_ProfileUsernameID",
+                        name: "FK_Profile_AspNetUsers_ProfileUsernameID",
                         column: x => x.ProfileUsernameID,
                         principalTable: "AspNetUsers",
                         principalColumn: "UserName",
@@ -188,13 +188,13 @@ namespace VRGamersWhoLift.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3f4d8fb3-ad25-47ee-bee6-124754fc05c9", 0, "cab99cde-fd0f-4c18-a5e5-f91d24cd69aa", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, null, "Password", null, null, false, "admin", "f7060ab9-5ca1-4222-9fe3-25f4bf8288df", false, "rarends" },
-                    { "a7ca8f61-eef4-45fe-b55e-fa8b844f9f91", 0, "2033fe41-199a-4a3d-a153-b2019efb5cfa", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, null, "Password", null, null, false, "coach", "c63ffa69-d448-414a-8178-ddc1ab3b31a4", false, "ngreyson" },
-                    { "de0cf227-e1d4-465b-8446-28bcf6f7c6cd", 0, "d3e6fde2-8ea5-4342-8f5c-3838aa68f0f2", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, null, "Password", null, null, false, "member", "2a82ad0e-018b-42cb-bfe5-396da34196ad", false, "swilkins" }
+                    { "1b0dfe2f-852e-47b9-ae61-2120360ed995", 0, "9a8d2708-3bde-4d0c-ab86-1fdaa41fb15a", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, null, "Password", null, null, false, "member", "fdafefac-72b8-4037-a39a-ca96bcb3643e", false, "swilkins" },
+                    { "888c909e-49c8-4e68-8c00-4d47b565fb88", 0, "ff33e6ee-3a8a-4089-9a00-82555fffabb5", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, null, "Password", null, null, false, "coach", "5f2a69de-480c-4741-b54d-1165b7fbfd56", false, "ngreyson" },
+                    { "da4f4b3f-1cb2-4d32-a09e-23574f725372", 0, "3ab43832-f5b0-4c64-8bab-126c91a25684", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, null, "Password", null, null, false, "admin", "6e53d080-7c06-46c0-8736-199436449c01", false, "rarends" }
                 });
 
             migrationBuilder.InsertData(
-                table: "profiles",
+                table: "Profile",
                 columns: new[] { "ProfileUsernameID", "Name" },
                 values: new object[,]
                 {
@@ -262,7 +262,7 @@ namespace VRGamersWhoLift.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "profiles");
+                name: "Profile");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
