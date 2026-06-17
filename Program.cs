@@ -1,10 +1,24 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.database;
 
 //File configs middleware for the app
 
 //creates WebApplicationBuilder object
 var builder = WebApplication.CreateBuilder(args);
+
+// Identity Framework Core Config
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
+}).AddEntityFrameworkStores<VRGamersWhoLiftContext>()
+  .AddDefaultTokenProviders();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -28,6 +42,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// config app to use authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAuthorization();
 

@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.users;
 
 namespace VRGamersWhoLift.Models.database
 {
-    public class VRGamersWhoLiftContext : DbContext //After installing EF Core
+    public class VRGamersWhoLiftContext : IdentityDbContext //After installing EF Core
     {
         public VRGamersWhoLiftContext(DbContextOptions<VRGamersWhoLiftContext> options) : base (options)
         {  }
@@ -19,10 +21,14 @@ namespace VRGamersWhoLift.Models.database
         //More useful info on how many DbContexts to use/have for the db -> https://stackoverflow.com/questions/16248074/how-many-dbcontexts-should-i-have
         protected override void OnModelCreating(ModelBuilder modelBuilder) //called by the EF Core framework when the context is created, Can override it to configure context manually - as I am doing here
         {
+            // Bug — unable to create DbContext of type '' The entity type 'IdentityUserLogin<string>' requires a primary key to be defined -> err occurred when Add-Migration executed
+            // Soln — The entity type 'IdentityUserLogin<string>' requires a primary key to be defined -> https://stackoverflow.com/questions/40703615/the-entity-type-identityuserloginstring-requires-a-primary-key-to-be-defined
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Member>().HasBaseType<User>();
             modelBuilder.Entity<Admin>().HasBaseType<User>();
             modelBuilder.Entity<Coach>().HasBaseType<User>(); //Expicitly define the subclasses of the entity in the OnModelCreating() method https://stackoverflow.com/questions/37398141/ef7-migrations-the-corresponding-clr-type-for-entity-type-is-not-instantiab
-            //p2 https://stackoverflow.com/questions/46027385/derived-types-in-entity-framework
+            //p2 https://stackoverflow.com/questions/46027385/derived-types-in-entity-framework -> also apparently pg 656 that I missed when reading
 
             //one to one rel behavior fk_User_profile
             modelBuilder.Entity<Profile>()
@@ -45,7 +51,7 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Arends",
                     Email = "robert.arends100@gitmail.com",
                     Password = "Password",
-                    Role = "a"
+                    Role = "admin"
 
                 }
             );
@@ -59,7 +65,7 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Wilkins",
                     Email = "Samantha.Wilkins@gitmail.com",
                     Password = "Password",
-                    Role = "m"
+                    Role = "member"
                 }    
             );
 
@@ -72,7 +78,7 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Greyson",
                     Email = "nolan.Greyson@viltrum.planet",
                     Password = "Password",
-                    Role = "c"
+                    Role = "coach"
                 }
             );
 
