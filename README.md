@@ -4,10 +4,12 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 
 # Tech Stack
 * Project Type: ASP.NET Core Web App (Model-View-Controller)
-* Framework: .NET 8.0
-* Microsoft.AspNetCore.Identity;
+* .NET 8.0
 
 # Languages
 * C#
 * MySQL
 # VRGamersWhoLift
+
+# Frameworks
+* Microsoft.AspNetCore.Identity - Microsoft identity -> Authentication
