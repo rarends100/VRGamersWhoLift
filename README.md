@@ -12,4 +12,4 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 # VRGamersWhoLift
 
 # Frameworks
-* Microsoft.AspNetCore.Identity - Microsoft identity -> Authentication
+* Microsoft.AspNetCore.Identity - Microsoft identity -> Authentication -> https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=visual-studio
