@@ -1,8 +1,6 @@
-﻿using VRGamersWhoLift.Models.Abstract;
-
-namespace VRGamersWhoLift.Models.users
+﻿namespace VRGamersWhoLift.Models.users
 {
-    public class Coach : User
+    public class Coach : BaseUser
     {
         public Coach()
         {

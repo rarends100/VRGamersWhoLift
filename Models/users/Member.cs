@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.Configuration.UserSecrets;
-using VRGamersWhoLift.Models.Abstract;
-
-namespace VRGamersWhoLift.Models.users
+﻿namespace VRGamersWhoLift.Models.users
 {
-    public class Member : User
+    public class Member : BaseUser
     {
         public Member()
         {

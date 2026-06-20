@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using VRGamersWhoLift.Models.Abstract;
 
 namespace VRGamersWhoLift.Models.users
 {
-    public class Admin : User
+    public class Admin : BaseUser
     {
         public Admin()
         {
