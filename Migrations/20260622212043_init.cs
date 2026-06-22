@@ -187,9 +187,9 @@ namespace VRGamersWhoLift.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3476a70e-7afb-49b9-b2e4-27c5c5429d14", 0, "8fd79df7-67ca-4cf2-8468-2331abda843a", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, null, "Password", null, null, false, "a470d4e4-8d59-462a-a7af-55dc4e039dae", false, "swilkins" },
-                    { "6b7ec3dd-e5b3-46f6-9c92-5abc88f6c556", 0, "f1b8474b-b771-4ffe-84e3-5dade6be99de", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, null, "Password", null, null, false, "5534d809-ceea-4062-ae30-a130b668f9eb", false, "ngreyson" },
-                    { "bc457c34-227a-4a66-afc4-cd29889f6e64", 0, "a411e4af-8ca3-4b42-a5a7-bf795086f112", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, null, "Password", null, null, false, "3caf330f-3c45-4d5d-899b-2068f1269600", false, "rarends" }
+                    { "4231e464-c043-4c21-9854-6ebd2f65339f", 0, "86a57d1c-24ba-426f-a233-51f0ab3fb3d9", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, "RARENDS", "Password", null, null, false, "a47b7200-478f-4eb3-9cbb-0b0d5d716ee2", false, "rarends" },
+                    { "4a0f8284-6c53-4a73-9566-196f0f58cc2b", 0, "2e4d03a1-d30e-4853-9fa3-32b151e09209", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, "NGREYSON", "Password", null, null, false, "f5c46c5e-609a-4aa3-ba51-8cb02ce0df98", false, "ngreyson" },
+                    { "77ff47e5-3037-4a4f-a784-613cc4115159", 0, "3f089ff3-5582-4b24-af01-43c9d7578ebd", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, "SWILKINS", "Password", null, null, false, "ed57ba29-32a3-42c6-b33b-1cd5d5b2b6a9", false, "swilkins" }
                 });
 
             migrationBuilder.InsertData(

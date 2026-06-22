@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore;
 using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.users;
 
@@ -46,6 +46,7 @@ namespace VRGamersWhoLift.Models.database
                 new Admin
                 {
                     UserName = "rarends", //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
+                    NormalizedUserName = "RARENDS",
                     FirstName = "Robert",
                     MiddleName = "Charles",
                     LastName = "Arends",
@@ -58,18 +59,20 @@ namespace VRGamersWhoLift.Models.database
                 new Member
                 {
                     UserName = "swilkins", //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
+                    NormalizedUserName = "SWILKINS",
                     FirstName = "Samantha",
                     MiddleName = "Eve",
                     LastName = "Wilkins",
                     Email = "Samantha.Wilkins@gitmail.com",
                     Password = "Password",
-                }    
+                }
             );
 
             modelBuilder.Entity<Coach>().HasData(
                 new Coach
                 {
                     UserName = "ngreyson",
+                    NormalizedUserName = "NGREYSON",
                     FirstName = "Nolan",
                     MiddleName = "",
                     LastName = "Greyson",

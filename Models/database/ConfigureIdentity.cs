@@ -41,7 +41,7 @@ namespace VRGamersWhoLift.Models.database
                 await roleManager.CreateAsync(new IdentityRole(role_name_coach));
             }
 
-            var Tusername = await userManager.FindByNameAsync(userManager.NormalizeName(username_1));
+            var Tusername = await userManager.FindByNameAsync(username_1);
             Console.WriteLine("Role is Task<TUser> " + Tusername);
             
             //if username not exist - create it

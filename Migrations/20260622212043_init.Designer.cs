@@ -12,7 +12,7 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260622204831_init")]
+    [Migration("20260622212043_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -296,14 +296,15 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bc457c34-227a-4a66-afc4-cd29889f6e64",
+                            Id = "4231e464-c043-4c21-9854-6ebd2f65339f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a411e4af-8ca3-4b42-a5a7-bf795086f112",
+                            ConcurrencyStamp = "86a57d1c-24ba-426f-a233-51f0ab3fb3d9",
                             Email = "robert.arends100@gitmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedUserName = "RARENDS",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3caf330f-3c45-4d5d-899b-2068f1269600",
+                            SecurityStamp = "a47b7200-478f-4eb3-9cbb-0b0d5d716ee2",
                             TwoFactorEnabled = false,
                             UserName = "rarends",
                             FirstName = "Robert",
@@ -322,14 +323,15 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6b7ec3dd-e5b3-46f6-9c92-5abc88f6c556",
+                            Id = "4a0f8284-6c53-4a73-9566-196f0f58cc2b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f1b8474b-b771-4ffe-84e3-5dade6be99de",
+                            ConcurrencyStamp = "2e4d03a1-d30e-4853-9fa3-32b151e09209",
                             Email = "nolan.Greyson@viltrum.planet",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedUserName = "NGREYSON",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5534d809-ceea-4062-ae30-a130b668f9eb",
+                            SecurityStamp = "f5c46c5e-609a-4aa3-ba51-8cb02ce0df98",
                             TwoFactorEnabled = false,
                             UserName = "ngreyson",
                             FirstName = "Nolan",
@@ -348,14 +350,15 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3476a70e-7afb-49b9-b2e4-27c5c5429d14",
+                            Id = "77ff47e5-3037-4a4f-a784-613cc4115159",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8fd79df7-67ca-4cf2-8468-2331abda843a",
+                            ConcurrencyStamp = "3f089ff3-5582-4b24-af01-43c9d7578ebd",
                             Email = "Samantha.Wilkins@gitmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            NormalizedUserName = "SWILKINS",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a470d4e4-8d59-462a-a7af-55dc4e039dae",
+                            SecurityStamp = "ed57ba29-32a3-42c6-b33b-1cd5d5b2b6a9",
                             TwoFactorEnabled = false,
                             UserName = "swilkins",
                             FirstName = "Samantha",
