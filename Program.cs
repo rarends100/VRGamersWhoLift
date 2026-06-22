@@ -5,10 +5,12 @@ using VRGamersWhoLift.Models.database;
 
 //File configs middleware for the app
 
+//https://learn.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-10.0 -> turtorial create users and seed data for authorization
+
 //creates WebApplicationBuilder object
 var builder = WebApplication.CreateBuilder(args);
 
-// Identity Framework Core Config
+// Identity Framework Core Config - enable IdentityUser and IdenentityRole
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 6;
@@ -18,6 +20,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireDigit = true;
 }).AddEntityFrameworkStores<VRGamersWhoLiftContext>()
   .AddDefaultTokenProviders();
+
 
 
 // Add services to the container.
@@ -48,6 +51,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseAuthorization();
+
+//calls the method in ConfigureIdentity.cs to preconfigure the roles for seed users
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
+}
 
 app.MapControllerRoute( //Identifies Default route
     name: "default",

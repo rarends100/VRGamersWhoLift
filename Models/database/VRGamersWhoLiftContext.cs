@@ -51,8 +51,6 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Arends",
                     Email = "robert.arends100@gitmail.com",
                     Password = "Password",
-                    Role = "admin"
-
                 }
             );
 
@@ -65,7 +63,6 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Wilkins",
                     Email = "Samantha.Wilkins@gitmail.com",
                     Password = "Password",
-                    Role = "member"
                 }    
             );
 
@@ -78,7 +75,6 @@ namespace VRGamersWhoLift.Models.database
                     LastName = "Greyson",
                     Email = "nolan.Greyson@viltrum.planet",
                     Password = "Password",
-                    Role = "coach"
                 }
             );
 

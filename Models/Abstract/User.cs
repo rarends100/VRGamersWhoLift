@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace VRGamersWhoLift.Models.Abstract
@@ -13,18 +14,16 @@ namespace VRGamersWhoLift.Models.Abstract
             MiddleName = string.Empty;
             LastName = string.Empty;
             Password = string.Empty;
-            Role = string.Empty;
             Profile = null!;
         }
 
-        public User(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Role, string Password, Profile Profile)
+        public User(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Password, Profile Profile)
         {
             this.UserName = UserName;
             this.FirstName = FirstName;
             this.MiddleName = MiddleName;
             this.LastName = LastName;
             this.Email = Email;
-            this.Role = Role;
             this.Password = Password;
             this.Profile = Profile;
         }
@@ -39,7 +38,8 @@ namespace VRGamersWhoLift.Models.Abstract
 
         [Required(ErrorMessage = "Please enter a password.")]
         public string Password { get; set; }
-        public string Role {  get; set; }
+        [NotMapped] //Must code so EF Core doesn't create a RoleNames col in the AspNetUsers table
+        public string RoleNames {  get; set; } //pg 680 -> seeded in ConfigureIdentity.cs
 
         //one to one - one -> Navigation prop (this is how EF knows the rel since it is code first by design)
         public Profile Profile { get; set; }

@@ -37,7 +37,6 @@ namespace VRGamersWhoLift.Migrations
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -185,12 +184,12 @@ namespace VRGamersWhoLift.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1b0dfe2f-852e-47b9-ae61-2120360ed995", 0, "9a8d2708-3bde-4d0c-ab86-1fdaa41fb15a", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, null, "Password", null, null, false, "member", "fdafefac-72b8-4037-a39a-ca96bcb3643e", false, "swilkins" },
-                    { "888c909e-49c8-4e68-8c00-4d47b565fb88", 0, "ff33e6ee-3a8a-4089-9a00-82555fffabb5", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, null, "Password", null, null, false, "coach", "5f2a69de-480c-4741-b54d-1165b7fbfd56", false, "ngreyson" },
-                    { "da4f4b3f-1cb2-4d32-a09e-23574f725372", 0, "3ab43832-f5b0-4c64-8bab-126c91a25684", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, null, "Password", null, null, false, "admin", "6e53d080-7c06-46c0-8736-199436449c01", false, "rarends" }
+                    { "3476a70e-7afb-49b9-b2e4-27c5c5429d14", 0, "8fd79df7-67ca-4cf2-8468-2331abda843a", "Member", "Samantha.Wilkins@gitmail.com", false, "Samantha", "Wilkins", false, null, "Eve", null, null, "Password", null, null, false, "a470d4e4-8d59-462a-a7af-55dc4e039dae", false, "swilkins" },
+                    { "6b7ec3dd-e5b3-46f6-9c92-5abc88f6c556", 0, "f1b8474b-b771-4ffe-84e3-5dade6be99de", "Coach", "nolan.Greyson@viltrum.planet", false, "Nolan", "Greyson", false, null, "", null, null, "Password", null, null, false, "5534d809-ceea-4062-ae30-a130b668f9eb", false, "ngreyson" },
+                    { "bc457c34-227a-4a66-afc4-cd29889f6e64", 0, "a411e4af-8ca3-4b42-a5a7-bf795086f112", "Admin", "robert.arends100@gitmail.com", false, "Robert", "Arends", false, null, "Charles", null, null, "Password", null, null, false, "3caf330f-3c45-4d5d-899b-2068f1269600", false, "rarends" }
                 });
 
             migrationBuilder.InsertData(

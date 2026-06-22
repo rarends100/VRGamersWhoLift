@@ -12,7 +12,7 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260617194504_init")]
+    [Migration("20260622204831_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -284,10 +284,6 @@ namespace VRGamersWhoLift.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("User");
                 });
 
@@ -300,21 +296,20 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "da4f4b3f-1cb2-4d32-a09e-23574f725372",
+                            Id = "bc457c34-227a-4a66-afc4-cd29889f6e64",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3ab43832-f5b0-4c64-8bab-126c91a25684",
+                            ConcurrencyStamp = "a411e4af-8ca3-4b42-a5a7-bf795086f112",
                             Email = "robert.arends100@gitmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6e53d080-7c06-46c0-8736-199436449c01",
+                            SecurityStamp = "3caf330f-3c45-4d5d-899b-2068f1269600",
                             TwoFactorEnabled = false,
                             UserName = "rarends",
                             FirstName = "Robert",
                             LastName = "Arends",
                             MiddleName = "Charles",
-                            Password = "Password",
-                            Role = "admin"
+                            Password = "Password"
                         });
                 });
 
@@ -327,21 +322,20 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "888c909e-49c8-4e68-8c00-4d47b565fb88",
+                            Id = "6b7ec3dd-e5b3-46f6-9c92-5abc88f6c556",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff33e6ee-3a8a-4089-9a00-82555fffabb5",
+                            ConcurrencyStamp = "f1b8474b-b771-4ffe-84e3-5dade6be99de",
                             Email = "nolan.Greyson@viltrum.planet",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5f2a69de-480c-4741-b54d-1165b7fbfd56",
+                            SecurityStamp = "5534d809-ceea-4062-ae30-a130b668f9eb",
                             TwoFactorEnabled = false,
                             UserName = "ngreyson",
                             FirstName = "Nolan",
                             LastName = "Greyson",
                             MiddleName = "",
-                            Password = "Password",
-                            Role = "coach"
+                            Password = "Password"
                         });
                 });
 
@@ -354,21 +348,20 @@ namespace VRGamersWhoLift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1b0dfe2f-852e-47b9-ae61-2120360ed995",
+                            Id = "3476a70e-7afb-49b9-b2e4-27c5c5429d14",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9a8d2708-3bde-4d0c-ab86-1fdaa41fb15a",
+                            ConcurrencyStamp = "8fd79df7-67ca-4cf2-8468-2331abda843a",
                             Email = "Samantha.Wilkins@gitmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fdafefac-72b8-4037-a39a-ca96bcb3643e",
+                            SecurityStamp = "a470d4e4-8d59-462a-a7af-55dc4e039dae",
                             TwoFactorEnabled = false,
                             UserName = "swilkins",
                             FirstName = "Samantha",
                             LastName = "Wilkins",
                             MiddleName = "Eve",
-                            Password = "Password",
-                            Role = "member"
+                            Password = "Password"
                         });
                 });
 
