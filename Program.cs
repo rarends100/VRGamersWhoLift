@@ -56,7 +56,7 @@ app.UseAuthorization();
 var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
 using (var scope = scopeFactory.CreateScope())
 {
-    await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
+    await ConfigureIdentity.CreateInitUsersAsync(scope.ServiceProvider);
 }
 
 app.MapControllerRoute( //Identifies Default route

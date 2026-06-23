@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.users;
@@ -19,6 +18,7 @@ namespace VRGamersWhoLift.Models.database
         //Seeding my tables with sample data
 
         //More useful info on how many DbContexts to use/have for the db -> https://stackoverflow.com/questions/16248074/how-many-dbcontexts-should-i-have
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) //called by the EF Core framework when the context is created, Can override it to configure context manually - as I am doing here
         {
             // Bug — unable to create DbContext of type '' The entity type 'IdentityUserLogin<string>' requires a primary key to be defined -> err occurred when Add-Migration executed
@@ -42,7 +42,11 @@ namespace VRGamersWhoLift.Models.database
                 .HasPrincipalKey<User>(u => u.UserName)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Admin>().HasData(
+
+
+
+
+            /*modelBuilder.Entity<Admin>().HasData(
                 new Admin
                 {
                     UserName = "rarends", //When using the HasData() method you must provide vals for the id properties, even ones configed as identity cols
@@ -51,7 +55,7 @@ namespace VRGamersWhoLift.Models.database
                     MiddleName = "Charles",
                     LastName = "Arends",
                     Email = "robert.arends100@gitmail.com",
-                    Password = "Password",
+                    Password = "Password_1",
                 }
             );
 
@@ -64,7 +68,7 @@ namespace VRGamersWhoLift.Models.database
                     MiddleName = "Eve",
                     LastName = "Wilkins",
                     Email = "Samantha.Wilkins@gitmail.com",
-                    Password = "Password",
+                    Password = "Password_1",
                 }
             );
 
@@ -77,9 +81,9 @@ namespace VRGamersWhoLift.Models.database
                     MiddleName = "",
                     LastName = "Greyson",
                     Email = "nolan.Greyson@viltrum.planet",
-                    Password = "Password",
+                    Password = "Password_1",
                 }
-            );
+            ); 
 
             //Profile data
             modelBuilder.Entity<Profile>().HasData(
@@ -98,7 +102,7 @@ namespace VRGamersWhoLift.Models.database
                     Name = "nolan_greyson",
                     ProfileUsernameID = "ngreyson"
                 }
-            );
+            );*/ // Now covered in the 'ConfigureIdentity.cs' class because IdentityFrameWorkCore is inherited by User now
             
 
         }

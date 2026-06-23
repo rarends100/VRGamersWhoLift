@@ -23,15 +23,14 @@ namespace VRGamersWhoLift.Models.users
             Password = string.Empty;
             Profile = null!;
         }
-        public BaseUser(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Password, Profile Profile)
+        public BaseUser(string UserName, string FirstName, string MiddleName, string LastName, string Email)
         {
             this.UserName = UserName;
             this.FirstName = FirstName;
             this.MiddleName = MiddleName;
             this.LastName = LastName;
             this.Email = Email;
-            this.Password = Password;
-            this.Profile = Profile;
+            Profile = null!;
         }
 
       
