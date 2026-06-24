@@ -13,3 +13,4 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 
 # Frameworks
 * Microsoft.AspNetCore.Identity - Microsoft identity -> Authentication -> https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=visual-studio
+* EF Core
