@@ -8,6 +8,9 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 
 # Languages
 * C#
+* JavaScript
+* HTML
+* CSS
 * SQL Server
 # VRGamersWhoLift
 
