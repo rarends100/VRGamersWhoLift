@@ -5,29 +5,17 @@
         public Member()
         {
             UserName = "";
-            FirstName = string.Empty;
-            MiddleName = string.Empty;
-            LastName = string.Empty;
-            Password = string.Empty;
         }
-        public Member(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Role, string Password)
+        public Member(string UserName,string Email)
         {
             this.UserName = UserName;
-            this.FirstName = FirstName;
-            this.MiddleName = MiddleName;
-            this.LastName = LastName;
             this.Email = Email;
-            this.Password = Password;
+
         }
-        public Member(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Role, string Password, Profile Profile)
+        public Member(string UserName, string Password, Profile Profile)
         {
             this.UserName = UserName;
-            this.FirstName = FirstName;
-            this.MiddleName = MiddleName;
-            this.LastName = LastName;
             this.Email = Email;
-            this.Password = Password;
-            this.Profile = Profile;
         }
 
     }
