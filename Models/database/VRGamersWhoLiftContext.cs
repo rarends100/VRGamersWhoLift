@@ -45,7 +45,7 @@ namespace VRGamersWhoLift.Models.database
 
 
 
-
+            //NOTE: With Identity framework integrated, had to move this logic to the ConfigureIdentity.cs class for proper user inserts and Password Hashing
             /*modelBuilder.Entity<Admin>().HasData(
                 new Admin
                 {

@@ -38,19 +38,14 @@ namespace VRGamersWhoLift.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: later add switch for different User sub class types to be registered here -> Coach, Member -> Later add a new view, Controller action method, and Register model for Admins
+                //TODO: later add switch for different User sub class types to be registered here -> Coach, Member -> Later add a new view, Controller action method, and add a RegisterViewModel for Admins
 
                 
-                Member member = new Member( //Profile is not stored in the User table, it is in the Profile table, so this constructor is used to make the necessary Membrer
+                BaseUser user = new Member( //Profile is not stored in the User table, it is in the Profile table, so this constructor is used to make the necessary Membrer
                     model.UserName,
-                    model.FirstName,
-                    model.MiddleName,
-                    model.LastName,
-                    model.Email,
-                    "member",
-                    model.Password
+                    model.Email
                     );
-                Profile profile = new Profile(model.UserName, model.FirstName + "_" + model.LastName, member);
+                Profile profile = new Profile(model.UserName, model.FirstName, model.MiddleName, model.LastName);
 
                 //https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/crud?view=aspnetcore-10.0
                 //DB CRUD ops
@@ -58,7 +53,7 @@ namespace VRGamersWhoLift.Controllers
                 {
 
                     //await context.Users.AddAsync(member);
-                    var result = await userManager.CreateAsync(member, model.Password); //pg 670 //  Password_1
+                    var result = await userManager.CreateAsync(user, model.Password); //pg 670 //  Password_1
                     if (result.Succeeded)
                     {
                         
@@ -66,7 +61,7 @@ namespace VRGamersWhoLift.Controllers
                         context.Profile.Add(profile);
                         context.SaveChanges();//pg 484
                         Console.WriteLine("User and profile for new user based on the username, added to the database.");
-                        await signInManager.SignInAsync(member, isPersistent: false); //Sign User In
+                        await signInManager.SignInAsync(user, isPersistent: false); //Sign User In //Checks the password against the password hash
                         return RedirectToAction("Index", "Home");
 
                         

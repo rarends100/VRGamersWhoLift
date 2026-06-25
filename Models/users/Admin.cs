@@ -8,20 +8,21 @@ namespace VRGamersWhoLift.Models.users
         {
             EmployeeID = string.Empty;
         }
-        public Admin(string UserName, string FirstName, string MiddleName, string LastName, string Email, string Password, Profile Profile, string EmployeeID)
+        public Admin(string UserName, string Email, string EmployeeID)
         {
             this.UserName = UserName;
-            this.FirstName = FirstName;
-            this.MiddleName = MiddleName;
-            this.LastName = LastName;
             this.Email = Email;
-            this.Password = Password;
-            this.Profile = Profile;
             this.EmployeeID = EmployeeID;
 
         }
+        public Admin(string UserName, string Email)
+        {
+            this.UserName = UserName;
+            this.Email = Email;
+            this.EmployeeID = "Not Listed Yet";
+        }
 
-        [Required]
+        [Required (ErrorMessage = "An Admistrator must have an employee ID.")]
         private string EmployeeID {  get; set; }
     }
 }
