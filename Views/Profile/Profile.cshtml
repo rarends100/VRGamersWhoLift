@@ -8,6 +8,7 @@
     //Access model props in a view pg 258
 
     ViewData["Title"] = "Profile Page";
+
 }
 
 
@@ -18,6 +19,13 @@
         <title>Profile Page</title>
     </head>
     <body>
+        <div>
+            <img src="" alt="Profile Photo" width="300" height="500" name="ProfilePhoto" id="ProfilePhoto" />
+        </div>
+        <div class="hidden" id="ProfilePhotoChooser">
+            <label for="Image">Choose an image to upload</label>
+            <input type="file" id="image" name="image" accept="/image/png,image/jpeg,image/jpg,image/webp" />
+        </div>
         <h1>Welcome [Name]</h1>
         <p>Profile page</p>
     </body>

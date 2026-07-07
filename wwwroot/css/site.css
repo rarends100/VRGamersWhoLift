@@ -24,3 +24,7 @@ body {
 .hidden {
     display: none;
 }
+
+.margin_left_10em {
+    margin-left: 10em;
+}

@@ -3,6 +3,9 @@ using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.users;
 using VRGamersWhoLift.Helpers;
 
+/**
+ *Configures Idenentity Roles and seeds users.
+ */
 
 namespace VRGamersWhoLift.Models.database
 {

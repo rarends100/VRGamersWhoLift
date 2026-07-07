@@ -27,6 +27,9 @@ namespace VRGamersWhoLift.Controllers
 
         //TODO: Register, login, and Logout methods here
 
+
+
+
         [HttpGet]
         public IActionResult MemberRegister()
         {
@@ -85,12 +88,19 @@ namespace VRGamersWhoLift.Controllers
            
         }
 
+
+
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
+
+
         [HttpGet]
         public IActionResult Login(string returnUrl = "")
         {
@@ -102,7 +112,6 @@ namespace VRGamersWhoLift.Controllers
         { 
             if (ModelState.IsValid) //need it to be valid or errors when data is null
             {
-
 
                 var result = await signInManager.PasswordSignInAsync(
                     model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false
