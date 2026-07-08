@@ -125,7 +125,7 @@ namespace VRGamersWhoLift.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Profile", "Profile");
                     }
                 }
             }
