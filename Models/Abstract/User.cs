@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace VRGamersWhoLift.Models.Abstract
@@ -20,6 +19,7 @@ namespace VRGamersWhoLift.Models.Abstract
             this.UserName = UserName;
             this.Email = Email;
             this.Profile = Profile;
+            Images = new List<Image>();
         }
 
         /*[NotMapped]
@@ -33,6 +33,9 @@ namespace VRGamersWhoLift.Models.Abstract
         [NotMapped]
         public Profile Profile { get; set; }
 
+        [NotMapped]
+        //one user to many images — nav prop
+        public List<Image> Images { get; set; }
 
 
     }

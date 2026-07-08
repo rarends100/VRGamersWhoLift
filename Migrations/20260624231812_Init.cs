@@ -163,9 +163,9 @@ namespace VRGamersWhoLift.Migrations
                 columns: table => new
                 {
                     ProfileUsernameID = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false), //Names will never be longer than 100 most likely - even international names -RA
+                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {

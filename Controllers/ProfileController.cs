@@ -14,7 +14,7 @@ namespace VRGamersWhoLift.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-
+            
 
             return View();
         }
