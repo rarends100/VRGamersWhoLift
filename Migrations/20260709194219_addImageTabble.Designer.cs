@@ -12,8 +12,8 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260708194507_addedImageTable")]
-    partial class addedImageTable
+    [Migration("20260709194219_addImageTabble")]
+    partial class addImageTabble
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -249,12 +249,12 @@ namespace VRGamersWhoLift.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("userId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ImageID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
                     b.ToTable("Image");
                 });
@@ -362,11 +362,11 @@ namespace VRGamersWhoLift.Migrations
 
             modelBuilder.Entity("VRGamersWhoLift.Models.Image", b =>
                 {
-                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "User")
+                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId");
 
-                    b.Navigation("User");
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>

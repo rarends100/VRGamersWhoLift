@@ -12,7 +12,7 @@ namespace VRGamersWhoLift.Models.database
 
         public DbSet<Profile> Profile { get; set; } = null!;
 
-        public DbSet<Image> Image { get; set; } = null;
+        public DbSet<Image> Image { get; set; } = null!;
         public DbSet<User> User { get; set; } = null!; //DbSet<Entity> class enables DbContext class to work with the collections of my entity classes
         //Any property in your entity with a name of Id (or ID) or the entity name followed by Id (or ID) is a primary key
         //bare minimum up to here is in
