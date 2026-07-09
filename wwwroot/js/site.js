@@ -4,8 +4,8 @@
 // Write your JavaScript code.
 
 
-const profilePhotoChooser = document.querySelector("#ProfilePhotoChooser");
-const profilePhoto = document.querySelector("#ProfilePhoto");
+const ProfilePhotoChooser = document.querySelector("#profile_photo_chooser");
+const profilePhoto = document.querySelector("#profile_photo");
 
 
 
@@ -19,10 +19,20 @@ const toggleElementHidden= (clickElem, TohideUnhideElem) => {
     clickElem.addEventListener("click", () => {
         if (TohideUnhideElem.classList.contains("hidden")) {
             TohideUnhideElem.classList.remove("hidden");
-        } else if (TohideUnhideElem.classList.contains("hidden")) {
+        } else if (!TohideUnhideElem.classList.contains("hidden")) {
             TohideUnhideElem.classList.add("hidden");
         }
     });
 }
+
+
+//Functions in use--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//toggles profile photo choice partial view hidden/unhidden if the profile photo is clicked
+if (profilePhoto != null) {
+    toggleElementHidden(profilePhoto, ProfilePhotoChooser);
+}
+
+
 
 

@@ -1,5 +1,5 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 *@
 @model VRGamersWhoLift.Models.Profile
 @{
@@ -20,16 +20,12 @@
     </head>
     <body>
     <div>
-        <form asp-action="ProfilePhotoUpdate" asp-controller="Profile" method="post">
-            <input type="image" name="submit" alt="profile_picture" src="profilePhotoVarPlaceholder" />
-        </form>
-        
-    </div> 
-        <!--<div class="hidden" id="ProfilePhotoChooser">
-            <label for="Image">Choose an image to upload</label>
-            <input type="file" id="image" name="image" accept="/image/png,image/jpeg,image/jpg,image/webp" />
-        </div>-->
+        <img src="profile_photo" alt="profile_photo" name="profile_photo" id="profile_photo"/>
+    </div>
         <h1>Welcome [Name]</h1>
         <p>Profile page</p>
+        <div class="photo_chooser_box hidden" id="profile_photo_chooser">
+            <partial name="~/Views/Shared/_uploadImage.cshtml" /> <!--https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-10.0-->
+        </div>
     </body>
 </html>
