@@ -9,6 +9,8 @@ using VRGamersWhoLift.Helpers;
 using System;
 using System.IO;
 using System.Text;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace VRGamersWhoLift.Controllers
@@ -62,10 +64,13 @@ namespace VRGamersWhoLift.Controllers
 
                 var loggedInUser = context.Users.Where(u => u.UserName.Contains(UserName)).ToList();
 
-                //create file path relative to server wwwroot dir https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-10.0
-                string filePath = ".\\..\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
+                //string appRoot = AppContext.BaseDirectory;
 
-                string directoryPath = Path.GetDirectoryName(filePath);
+                //create file path relative to server wwwroot dir https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-10.0
+                string fullFilePath = ".\\..\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
+                string dbEntryPath = "\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //The path that will be called by img elements
+
+                string directoryPath = Path.GetDirectoryName(fullFilePath);
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -80,29 +85,53 @@ namespace VRGamersWhoLift.Controllers
                 CurrentUser.Id = loggedInUser[0].Id;
 
                 //Does this profile pic already exist?
-                var isProfilePic = context.Image.Where(i => i.ImagePath.Contains(filePath)).Where(i => i.ImageType.Contains(ImageTypeOpts.p.ToString())).ToList();
+                var isProfilePic = context.Image.Where(i => i.UserId.Contains(CurrentUser.Id)).Where(i => i.ImageType.Contains(ImageTypeOpts.p.ToString())).ToList();
 
                 if (isProfilePic.Count() > 0) 
                 {
-                    Image picture = new Image(filePath, ImageTypeOpts.p.ToString());
-                    context.Image.Update(picture);
+                    Image picture = new Image(dbEntryPath, ImageTypeOpts.p.ToString(), CurrentUser.Id);
+
+                    try
+                    {
+
+                        ///https://learn.microsoft.com/en-us/ef/core/performance/efficient-updating?tabs=ef7
+                        //pg 148 Murach ASP.NET Core MVC 2nd Edition
+                        IQueryable<Image> selectedImage = context.Image.Where(i => i.ImageType.Contains(ImageTypeOpts.p.ToString())).Where(i => i.UserId.Contains(CurrentUser.Id));
+                        picture.ImageID = (int) selectedImage.Select(i => i.ImageID).FirstOrDefault();
+                        context.Image
+                            .Where(i => i.ImageID == picture.ImageID)
+                            .ExecuteUpdate(setters => setters.SetProperty(i => i.ImagePath, dbEntryPath)); //https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete
+                        context.SaveChanges(); //NOTE: Users can only have 1 profile photo — This is by design
+                    }catch(SqlException ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("\n\n SQLException: \n" + ex + "\n\n");
+                    }
+                    
 
                     //must use fully qualified name since theree is a file method in the Controller class that all controllers inherit, annoying
                 }
                 else
                 {
-                    Image picture = new Image(filePath, ImageTypeOpts.p.ToString());
-                    context.Image.Add(picture);
-                    
+                    Image picture = new Image(dbEntryPath, ImageTypeOpts.p.ToString(), CurrentUser.Id);
+                    try
+                    {
+                        context.Image.Add(picture);
+                        context.SaveChanges(); //NOTE to SELF — do NOT forget this after making changes to the DB in EF Core
+                    }
+                    catch (SqlException ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("\n\n SQLException: \n" + ex + "\n\n");
+                    }
 
                 }
 
                 try
                 {
                     //https://stackoverflow.com/questions/39322085/how-to-save-iformfile-to-disk
-                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    using (Stream fileStream = new FileStream(fullFilePath, FileMode.Create))
                     {
                         image.CopyTo(fileStream);
+                        fileStream.Close(); //close the stream to free up resources
                     }
 
 
@@ -125,4 +154,5 @@ namespace VRGamersWhoLift.Controllers
         }
 
     }
+
 }

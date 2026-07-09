@@ -246,12 +246,13 @@ namespace VRGamersWhoLift.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ImageID");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Image");
                 });
@@ -359,11 +360,13 @@ namespace VRGamersWhoLift.Migrations
 
             modelBuilder.Entity("VRGamersWhoLift.Models.Image", b =>
                 {
-                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "user")
+                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>

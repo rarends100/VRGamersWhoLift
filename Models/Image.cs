@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using VRGamersWhoLift.Models.Abstract;
+﻿using VRGamersWhoLift.Models.Abstract;
+
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VRGamersWhoLift.Models
 {
@@ -9,28 +12,34 @@ namespace VRGamersWhoLift.Models
         public Image() {
             ImagePath = "";
             ImageType = "";
+            UserId = "";
         }
-        public Image(string imagePath, string imageType, User user)
+        public Image(string imagePath, string imageType, string userId, User user)
         {
             ImagePath = imagePath;
             ImageType = imageType;
-            this.user = user;
+            User = user;
+            UserId = userId;
         }
 
-        public Image(string imagePath, string imageType)
+        public Image(string imagePath, string imageType, string userId)
         {
             ImagePath = imagePath;
             ImageType = imageType;
+            UserId = userId;
 
         }
-
+        //PK
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //making this col autoincrement — Just makes this far easier
+        public int ImageID { get; set; } //covered by auto-increment
         public string ImagePath { get; set; }
         public string ImageType { get; set; } // p = profile, g = gallery
 
-        //PK
-        public int ImageID { get; set; } = -1000; //covered by auto-increment
-
-        public User user { get; set; } = null!;
+        
+        
+        public string UserId { get; set; } 
+        public User User { get; set; } = null!;
 
     }
 }
