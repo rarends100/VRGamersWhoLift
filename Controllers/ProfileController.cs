@@ -11,6 +11,7 @@ using System.IO;
 using System.Text;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using VRGamersWhoLift.Models.ViewModels;
 
 
 namespace VRGamersWhoLift.Controllers
@@ -150,7 +151,9 @@ namespace VRGamersWhoLift.Controllers
 
             }
 
-                return View("Profile");
+                ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context);
+
+                return View("Profile", profileViewModel);
         }
 
     }
