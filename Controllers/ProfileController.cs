@@ -4,6 +4,7 @@ using VRGamersWhoLift.Models.database;
 using VRGamersWhoLift.Models;
 using VRGamersWhoLift.Models.users;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace VRGamersWhoLift.Controllers
@@ -44,6 +45,8 @@ namespace VRGamersWhoLift.Controllers
             {
                 //Get the current logged in user — The user that wants to add the photo
                 string UserName = HttpContext.User.Identity.Name;
+
+                var LoggedInUser = context.Users.Where(u => u.UserName.Contains(UserName)).ToList();
                 
                 //create file path relative to server wwwroot dir https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-10.0
                 string filePath = "~\\wwwroot\\UserPhotos\\" + "";
