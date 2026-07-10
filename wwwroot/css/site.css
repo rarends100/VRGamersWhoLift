@@ -20,3 +20,43 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.hidden {
+    display: none;
+}
+
+.margin_left_10em {
+    margin-left: 10em;
+}
+
+.photo_chooser_box { /**Exlusively for the _photoChooser.cshtml, use it in a pages <div> anytime it is in use, ex in profile.cshtml*/
+    background-color: greenyellow;
+    border: solid 5px #000;
+    
+    font-size: 1em;
+    font-weight: bold;
+
+    position: absolute; /**Fully divorced from normal flow, so now it follows its own flow, so it no longer flows the margin prop in the box model. -RA*/
+    left: 500px;
+    right: 400px;
+    top: 130px;
+
+    margin-right: 100px;
+    
+
+    
+}
+
+.profile_photo_circle {
+    border: solid 3px #000;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.profile_photo_circle_nav_bar {
+
+}
+
+img:hover {
+    opacity: 80%;
+}

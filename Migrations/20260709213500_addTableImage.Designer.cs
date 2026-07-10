@@ -12,8 +12,8 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260624231812_Init")]
-    partial class Init
+    [Migration("20260709213500_addTableImage")]
+    partial class addTableImage
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,6 +233,33 @@ namespace VRGamersWhoLift.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("VRGamersWhoLift.Models.Image", b =>
+                {
+                    b.Property<int>("ImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageID"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ImageID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Image");
+                });
+
             modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>
                 {
                     b.Property<string>("ProfileUsernameID")
@@ -332,6 +359,17 @@ namespace VRGamersWhoLift.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VRGamersWhoLift.Models.Image", b =>
+                {
+                    b.HasOne("VRGamersWhoLift.Models.Abstract.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VRGamersWhoLift.Models.Profile", b =>

@@ -34,7 +34,7 @@
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile" asp-route-id="?the=4&n=7">Profile Home</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Profile" asp-route-id="?the=4&n=7">Profile</a>
                             </li>
                         }
                         
@@ -42,8 +42,8 @@
                         {
                             <li class="nav-item">
                                 <form method="post" asp-action="Logout" asp-controller="Authentication" asp-area="">
-                                    <input type="submit" value="Logout" class="btn btn-outline-light" />
-                                    <span class="text-light">@User.Identity?.Name</span>
+                                    <input type="submit" value="Logout" class="btn btn-outline-danger" />
+                                    <span class="text-dark margin_left_10em">@User.Identity?.Name</span>
                                 </form>
                             </li>
                         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VRGamersWhoLift.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class addTableImage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -159,13 +159,34 @@ namespace VRGamersWhoLift.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Image",
+                columns: table => new
+                {
+                    ImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Image", x => x.ImageID);
+                    table.ForeignKey(
+                        name: "FK_Image_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Profile",
                 columns: table => new
                 {
                     ProfileUsernameID = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false), //Names will never be longer than 100 most likely - even international names -RA
-                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,6 +237,11 @@ namespace VRGamersWhoLift.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Image_UserId",
+                table: "Image",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -235,6 +261,9 @@ namespace VRGamersWhoLift.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Profile");
