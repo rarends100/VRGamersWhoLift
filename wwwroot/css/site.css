@@ -19,6 +19,8 @@ html {
 
 body {
   margin-bottom: 60px;
+
+  background-color: lightsteelblue
 }
 
 .hidden {
@@ -69,8 +71,68 @@ body {
 
 }
 
+/**Only apply to div containing partial nav on profile pages*/
+.profile_nav_outer {
+    position: absolute;
+    left: 50px;
+    top: 150px;
+
+    font-size: 2em;
+
+    padding-left: 0px;
+    padding-right: 0px;
+
+
+}
+
+.profile_nav_li_border {
+    border: dotted 1px black;
+
+    padding-left: 70px;
+    padding-right: 50px;
+    
+    background-color: darkgreen;
+}
+
+/**https://www.w3schools.com/howto/howto_css_three_columns.asp*/
+.column_col1_and_3_profile {
+    float: left;
+    width: 20%;
+    margin-top: 100px;
+}
+
+
+.column_profile_col2 {
+    float: left;
+    width: 60%;
+    margin-top: 100px;
+}
+
+/* Clear floats after the columns */
+.profile_row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 
 
 img:hover {
     opacity: 80%;
+}
+
+
+
+
+/**sub classes*/
+ul.no_bullets {
+    list-style-type: none;
+}
+
+a:hover.profile_a_nav_hover { /**decendent combinator & psudo element use    https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Attribute_selectors*/
+    color: greenyellow;
+}
+
+a.profile_a_nav_link {
+    color: purple;
 }
