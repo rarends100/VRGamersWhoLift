@@ -51,11 +51,24 @@ body {
     border: solid 3px #000;
     border-radius: 100px;
     cursor: pointer;
+
+    margin-top: 100px;
+}
+
+.profile_background_picture {
+    z-index: -1; /**Stacks the element to the back, or front or whereever, in this case to the back*/
+    position: absolute;
+    left: 400px;
+    right: 400px;
+    top: 100px;
+
 }
 
 .profile_photo_circle_nav_bar {
 
 }
+
+
 
 img:hover {
     opacity: 80%;
