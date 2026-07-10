@@ -28,9 +28,10 @@ namespace VRGamersWhoLift.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-
+            ProfileViewModel model = HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            model.Errors = new List<string>();
             
-            return View();
+            return View(model);
         }
 
 
@@ -43,18 +44,18 @@ namespace VRGamersWhoLift.Controllers
         {
 
             System.Diagnostics.Debug.WriteLine("Hit Profile photo update function");
-
             List<string> errors = new List<string>();
 
-            
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
 
 
 
 
-            if(image == null)
+
+            if (image == null)
             {
                 errors.Add("No photo selected.");
-                ViewBag.Errors = errors;
+                profileViewModel.Errors = errors;
                 return View("Profile");
                 
             }
@@ -68,8 +69,8 @@ namespace VRGamersWhoLift.Controllers
                 //string appRoot = AppContext.BaseDirectory;
 
                 //create file path relative to server wwwroot dir https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-10.0
-                string fullFilePath = ".\\..\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
-                string dbEntryPath = "\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //The path that will be called by img elements
+                string fullFilePath = ".\\wwwroot\\UserPhotos\\" + UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
+                string dbEntryPath = "\\UserPhotos\\" + UserName + "\\" + image.FileName; //The path that will be called by img elements
 
                 string directoryPath = Path.GetDirectoryName(fullFilePath);
                 if (!Directory.Exists(directoryPath))
@@ -134,10 +135,12 @@ namespace VRGamersWhoLift.Controllers
                         image.CopyTo(fileStream);
                         fileStream.Close(); //close the stream to free up resources
                     }
-
+                    //profileViewModel.Errors.Clear();
 
                     //Creates or replaces a file //https://learn.microsoft.com/en-us/dotnet/api/system.io.file.create?view=net-10.0
                 }
+
+                
                 catch(IOException ex)
                 {
                     System.Diagnostics.Debug.WriteLine("\n\n IOException: \n" + ex + "\n\n" );
@@ -150,8 +153,6 @@ namespace VRGamersWhoLift.Controllers
 
 
             }
-
-                ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context);
 
                 return View("Profile", profileViewModel);
         }

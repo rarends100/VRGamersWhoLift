@@ -37,7 +37,7 @@ body {
     font-weight: bold;
 
     position: absolute; /**Fully divorced from normal flow, so now it follows its own flow, so it no longer flows the margin prop in the box model. -RA*/
-    left: 300px;
+    left: 500px;
     right: 400px;
     top: 130px;
 
@@ -48,9 +48,15 @@ body {
 }
 
 .profile_photo_circle {
-
+    border: solid 3px #000;
+    border-radius: 100px;
+    cursor: pointer;
 }
 
 .profile_photo_circle_nav_bar {
 
+}
+
+img:hover {
+    opacity: 80%;
 }

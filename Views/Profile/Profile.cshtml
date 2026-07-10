@@ -1,7 +1,7 @@
 ﻿@*
 
 *@
-@model VRGamersWhoLift.Models.Profile
+@model VRGamersWhoLift.Models.ViewModels.ProfileViewModel //pg 258 Murach
 @{
     //Razor Syntax
     //Tag helpers to generate URLs pg 246
@@ -20,15 +20,15 @@
     </head>
     <body>
     <div>
-        <img src="profile_photo" alt="profile_photo" name="profile_photo" id="profile_photo"/>
+        <img src="@Url.Content(Model.Picture)" alt="profile_photo" name="profile_photo" id="profile_photo" width="200" height="200" class="profile_photo_circle" />
     </div>
-        <h1>Welcome [Name]</h1>
+        <h1>Welcome @Model.UserName</h1>
         <p>Profile page</p>
         <div class="photo_chooser_box hidden" id="profile_photo_chooser">
             <partial name="~/Views/Shared/_uploadImage.cshtml" /> <!--https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-10.0-->
-        <span style="color: red; margin-left: 100px; background-color: black;">@if (ViewBag.Errors != null && ViewBag.Errors.Count != 0 )
+        <span style="color: red; margin-left: 100px; background-color: black;">@if (@Model.Errors != null && @Model.Errors.Count != 0 )
             { 
-                foreach (string error in ViewBag.Errors) { @error; } 
+                foreach (string error in @Model.Errors) { @error; } 
             }</span>
     </div>
     </body>

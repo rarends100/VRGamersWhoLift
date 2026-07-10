@@ -19,7 +19,6 @@ namespace VRGamersWhoLift.Models.Abstract
             this.UserName = UserName;
             this.Email = Email;
             this.Profile = Profile;
-            Images = new List<Image>();
         }
 
         /*[NotMapped]
@@ -35,7 +34,7 @@ namespace VRGamersWhoLift.Models.Abstract
 
         [NotMapped]
         //one user to many images — nav prop
-        public List<Image> Images { get; set; }
+        public List<Image> Images { get; set; } = null!;
 
 
     }

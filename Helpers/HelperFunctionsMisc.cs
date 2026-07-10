@@ -10,14 +10,24 @@ namespace VRGamersWhoLift.Helpers
     {
 
 
-        //Call anytime the profile displayed values need to be updated.
-        public static ProfileViewModel PopulateProfileData(VRGamersWhoLiftContext context)
+        //Call anytime the profile displayed values need to be updated. So far it populates the profile picture
+        public static ProfileViewModel PopulateProfileData(VRGamersWhoLiftContext context, HttpContext HttpContext)
         {
             ProfileViewModel profile = new ProfileViewModel();
 
             try
             {
-                profile.Picture = context.Image.Where(i => i.ImageType.Contains(ImageTypeOpts.p.ToString())).Select(i => i.ImagePath).FirstOrDefault();
+                //Profile picture
+                string pic = context.Image.Where(i => i.ImageType.Contains(ImageTypeOpts.p.ToString())).Select(i => i.ImagePath).FirstOrDefault();
+                pic = pic.Replace("\\", "/");
+
+                profile.Picture = pic;
+
+                //UserName
+                profile.UserName = HttpContext.User.Identity.Name;
+
+                //First, Middle, and Last name
+                //profile.FirstName = context.Users.Where(u => u.UserName.Contains(profile.UserName)).Select(u => u.First)
             }
             catch(SqlException ex)
             {
