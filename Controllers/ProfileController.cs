@@ -153,6 +153,9 @@ namespace VRGamersWhoLift.Controllers
 
 
             }
+                //TODO: solve bug where even though the new profile picture is updated, the old profile picture is not deleted, alternatively I could just assign it to the gallery
+                profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+
 
                 return View("Profile", profileViewModel);
         }
