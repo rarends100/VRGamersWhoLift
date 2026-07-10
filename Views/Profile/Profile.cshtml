@@ -20,13 +20,20 @@
     </head>
     <body>
     <div>
-        <img src="@Url.Content(Model.BackgroundPicture)" alt="" name="background_picture" id="background_picture" width="1500" height="400" class="profile_background_picture" />
+        
+        <div class ="profile_banner">
+            <img src="@Url.Content(Model.Banner)" alt="" name="profile_banner" id="profile_banner" width="1500" height="400"  />
+        </div>
+        
+        <div class="photo_chooser_box hidden" id="profile_banner_chooser">
+            <partial name="~/Views/Shared/_uploadProfileBannerImage.cshtml" />
+        </div>
         <img src="@Url.Content(Model.Picture)" alt="profile_photo" name="profile_photo" id="profile_photo" width="200" height="200" class="profile_photo_circle" />
     </div>
-        <h1>Welcome @Model.UserName</h1>
+        <h1>@Model.FirstName @Model.LastName</h1>
         <p>Profile page</p>
         <div class="photo_chooser_box hidden" id="profile_photo_chooser">
-            <partial name="~/Views/Shared/_uploadImage.cshtml" /> <!--https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-10.0-->
+            <partial name="~/Views/Shared/_uploadProfileImage.cshtml" /> <!--https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-10.0-->
         <span style="color: red; margin-left: 100px; background-color: black;">@if (@Model.Errors != null && @Model.Errors.Count != 0 )
             { 
                 foreach (string error in @Model.Errors) { @error; } 
