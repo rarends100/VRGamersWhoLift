@@ -10,6 +10,8 @@ namespace VRGamersWhoLift.Models.Abstract
         {
             UserName = "";
             Profile = null!;
+            FirstName = "";
+            LastName = "";
         }
 
 
@@ -19,11 +21,27 @@ namespace VRGamersWhoLift.Models.Abstract
             this.UserName = UserName;
             this.Email = Email;
             this.Profile = Profile;
+            FirstName = "";
+            LastName = ""; 
+        }
+
+        public User(string UserName, string Email, Profile Profile, string FirstName, string MiddleName, string LastName)
+        {
+            this.UserName = UserName;
+            this.Email = Email;
+            this.Profile = Profile;
+            this.FirstName = FirstName;
+            this.MiddleName = MiddleName;
+            this.LastName = LastName;
         }
 
         /*[NotMapped]
         [Required(ErrorMessage = "Please enter a password.")]
         public string Password { get; set; }*/ //Now covered by the view model to ensure Identity framework works as intended by Microsoft
+
+        string FirstName { get; set; }
+        string MiddleName { get; set; } = null!;
+        string LastName { get; set; }
 
         [NotMapped] //Must code so EF Core doesn't create a RoleNames col in the AspNetUsers table
         public string RoleNames {  get; set; } //pg 680 -> seeded in ConfigureIdentity.cs
