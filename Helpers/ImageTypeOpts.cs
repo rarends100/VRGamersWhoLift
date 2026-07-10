@@ -3,6 +3,7 @@
     public enum ImageTypeOpts
     {
         p, //profile pic
-        g, //gallery
+        g, //gallery pictures
+        b, //profile background image
     }
 }

@@ -21,6 +21,13 @@ namespace VRGamersWhoLift.Models.Abstract
             this.Profile = Profile;
         }
 
+        public User(string UserName, string Email, Profile Profile, string FirstName, string MiddleName, string LastName)
+        {
+            this.UserName = UserName;
+            this.Email = Email;
+            this.Profile = Profile;
+        }
+
         /*[NotMapped]
         [Required(ErrorMessage = "Please enter a password.")]
         public string Password { get; set; }*/ //Now covered by the view model to ensure Identity framework works as intended by Microsoft

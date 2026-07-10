@@ -4,10 +4,12 @@
 // Write your JavaScript code.
 
 
-const ProfilePhotoChooser = document.querySelector("#profile_photo_chooser");
+const profilePhotoChooser = document.querySelector("#profile_photo_chooser");
 const profilePhoto = document.querySelector("#profile_photo");
 
 
+const profileBannerChooser = document.querySelector("#profile_banner_chooser");
+const profileBanner = document.querySelector("#profile_banner");
 
 
 
@@ -30,8 +32,13 @@ const toggleElementHidden= (clickElem, TohideUnhideElem) => {
 
 //toggles profile photo choice partial view hidden/unhidden if the profile photo is clicked
 if (profilePhoto != null) {
-    toggleElementHidden(profilePhoto, ProfilePhotoChooser);
+    toggleElementHidden(profilePhoto, profilePhotoChooser);
 }
+
+if (profileBanner != null) {
+    toggleElementHidden(profileBanner, profileBannerChooser);
+}
+
 
 
 
