@@ -29,10 +29,11 @@
             </div>
 
             <div class="profile_banner">
-                <img src="@Url.Content(Model.Banner)" alt="" name="profile_banner" id="profile_banner" width="1500" height="400" />
+                <img src="@Url.Content(Model.Banner)" alt="" name="profile_banner" width="1500" height="400" />
             </div>
 
-            <div class="photo_chooser_box hidden" id="profile_banner_chooser">
+            <input type="button" value="Update Profile Banner" id="profile_banner" class="profile_banner_update_button_pos" />
+            <div class="photo_chooser_box hidden"id="profile_banner_chooser" >
                 <partial name="~/Views/Shared/_uploadProfileBannerImage.cshtml" />
             </div>
             <img src="@Url.Content(Model.Picture)" alt="profile_photo" name="profile_photo" id="profile_photo" width="200" height="200" class="profile_photo_circle" />

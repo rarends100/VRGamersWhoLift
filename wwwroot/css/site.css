@@ -67,6 +67,14 @@ body {
     border: solid 2px #000;
 }
 
+.profile_banner_update_button_pos {
+    z-index: 0;
+    position: absolute;
+    right: 488px;
+    top: 500px;
+    
+}
+
 .profile_photo_circle_nav_bar {
 
 }
