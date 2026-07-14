@@ -43,6 +43,8 @@ namespace VRGamersWhoLift.Models.Abstract
         //one user to many images — nav prop
         public List<Image> Images { get; set; } = null!;
 
+        public List<Post> Posts { get; set; } = null!;
+
 
     }
 }
