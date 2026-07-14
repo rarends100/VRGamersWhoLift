@@ -41,5 +41,9 @@ namespace VRGamersWhoLift.Models
         public string UserId { get; set; } 
         public User User { get; set; } = null!;
 
+
+
+        public IEnumerable<Post> Post { get; set; } = null!;
+
     }
 }

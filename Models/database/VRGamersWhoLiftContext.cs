@@ -13,6 +13,8 @@ namespace VRGamersWhoLift.Models.database
         public DbSet<Profile> Profile { get; set; } = null!;
 
         public DbSet<Image> Image { get; set; } = null!;
+
+        public DbSet<Post> Post { get; set; } = null!;
         public DbSet<User> User { get; set; } = null!; //DbSet<Entity> class enables DbContext class to work with the collections of my entity classes
         //Any property in your entity with a name of Id (or ID) or the entity name followed by Id (or ID) is a primary key
         //bare minimum up to here is in
@@ -42,6 +44,12 @@ namespace VRGamersWhoLift.Models.database
                 .IsRequired()
                 .HasPrincipalKey<User>(u => u.UserName)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.Image)
+                .WithMany(p => p.Post)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
             //NOTE: With Identity framework integrated, had to move this logic to the ConfigureIdentity.cs class for proper user inserts and Password Hashing
             /*modelBuilder.Entity<Admin>().HasData(
