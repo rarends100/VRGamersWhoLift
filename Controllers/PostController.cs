@@ -39,6 +39,7 @@ namespace VRGamersWhoLift.Controllers
 
         public IActionResult GetOtherUsersPost()
         {
+            //TODO: Only write this method after the functionality to view another users profile is completed in it's most basic way.
             return View("Profile");
         }
 

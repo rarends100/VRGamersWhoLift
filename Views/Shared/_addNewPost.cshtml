@@ -1,0 +1,13 @@
+﻿<label for="add_new_post">Add New Post</label>
+<form asp-action="addNewPost" asp-controller="Post" method="post" id="add_new_post">
+    <textarea
+        id="post-text"
+        name="postTextContent"
+        rows="5"
+        cols="50"
+        placeholder=""
+        required
+    ></textarea>
+
+    <input type="submit" value="Add Post" />
+</form>
