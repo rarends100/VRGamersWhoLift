@@ -75,7 +75,22 @@
             <!--Posts go here-->
             <div id="posts">
                 <p>
-                    Model.
+                    @if(Model.posts != null)
+                    {
+                        foreach(Post post in Model.posts)
+                        {
+                            <div>
+                                @post.PostText
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div>
+                            no posts
+                        </div>
+                    }
+
                 </p>
             </div>
         </div>
