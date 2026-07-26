@@ -61,18 +61,48 @@
             <p>ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads ads and MORE ads ads ads ads!</p>
         </div>
 
+       
         <!--posts col 2-->
         <div class="column_profile_col2">
-            <p>
-                This is a test post concept
-            </p>
+            <!--add new post-->
+            <div>
+                <input type="button" value="Add New Post" id="new_post_button_toggle" />
+                <div id="new_post" class="hidden">
+                    <partial name="~/Views/Shared/_addNewPost.cshtml" />
+                </div>
+            </div>
+            
+            <!--Posts go here-->
+            <div id="posts">
+                <p>
+                    @if(Model.posts != null)
+                    {
+                        foreach(Post post in Model.posts)
+                        {
+                            <div>
+                                @post.PostText
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div>
+                            no posts
+                        </div>
+                    }
+
+                </p>
+            </div>
         </div>
 
 
         <!--col 3-->
         <div class="column_col1_and_3_profile">
             <p>stuff i will find something to add later tuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add latertuff i will find something to add laters.</p>
-            </di>
+            <p class="post_content_box">
+
+            </p>
+            
     </div>
     <!--ads col 1-->
     

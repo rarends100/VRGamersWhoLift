@@ -3,6 +3,8 @@ using VRGamersWhoLift.Models.ViewModels;
 
 using VRGamersWhoLift.Helpers;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using VRGamersWhoLift.Models;
 
 namespace VRGamersWhoLift.Helpers
 {
@@ -53,6 +55,24 @@ namespace VRGamersWhoLift.Helpers
                 profile.FirstName = context.Profile.Where(p => p.ProfileUsernameID.Contains(profile.UserName!)).Select(p => p.FirstName).FirstOrDefault()!;
                 profile.MiddleName = context.Profile.Where(p => p.ProfileUsernameID.Contains(profile.UserName!)).Select(p => p.MiddleName).FirstOrDefault()!;
                 profile.LastName = context.Profile.Where(p => p.ProfileUsernameID.Contains(profile.UserName!)).Select(p => p.LastName).FirstOrDefault()!;
+
+                //---------populate all profile posts-----------
+                var AllPostTablePostIds = context.Post.Where(p => p.UserId.Contains(profile.UserId)).Select(p => p.PostId).ToList();
+
+                //now that I have the postID I can use it to populate the post values then add that post to the LIst in Post.cs model
+
+                foreach(int postID in AllPostTablePostIds)
+                {
+                    Post post = new Post();
+
+                    post.PostId = postID;
+                    post.PostText = context.Post.Where(p => p.PostId == postID).Select(p => p.PostText).FirstOrDefault()!;
+                    post.Image = context.Post.Where(p => p.PostId == postID).Select(p => p.Image).FirstOrDefault()!;
+
+                    profile.posts.Add(post);
+                     
+                }
+
 
                 //First, Middle, and Last name — May be null, doesn't patter if it is — also, within the architecture I have created it basically never will be.
                 //profile.FirstName = context.Users.Where(u => u.UserName.Contains(profile.UserName)).Select(u => u.First)

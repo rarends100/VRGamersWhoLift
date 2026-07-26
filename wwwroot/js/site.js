@@ -11,6 +11,9 @@ const profilePhoto = document.querySelector("#profile_photo");
 const profileBannerChooser = document.querySelector("#profile_banner_chooser");
 const profileBanner = document.querySelector("#profile_banner");
 
+const newPostToggle = document.querySelector("#new_post_button_toggle");
+const newPost = document.querySelector("#new_post");
+
 
 
 //Functions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -35,8 +38,14 @@ if (profilePhoto != null) {
     toggleElementHidden(profilePhoto, profilePhotoChooser);
 }
 
+//toggles profile banner choice partial view hidden/unhidden if the profile photo is clicked
 if (profileBanner != null) {
     toggleElementHidden(profileBanner, profileBannerChooser);
+}
+
+//toggle add post
+if (newPostToggle != null && newPost != null) {
+    toggleElementHidden(newPostToggle, newPost);
 }
 
 
