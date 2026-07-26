@@ -13,6 +13,8 @@
         public List<string> Gallery { get; set; } = null!; //pictures in the gallery for the specified user
         public List<string> Errors { get; set; } = null!;
 
+        public List<Post> posts { get; set; } = null!;
+
         //Will likely add more fields like posts and stuff as I continue the design of this webpage
     }
 }
