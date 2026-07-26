@@ -20,5 +20,6 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 * EF Core
 
 # Instructions for use
+* clone to visual studio
 * Open "Package Manager Console" in Visual Studio
 * Run command -> update-database
