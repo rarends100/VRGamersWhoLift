@@ -50,8 +50,15 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
-        public IActionResult UpdatePost(int postId)
+        public IActionResult UpdatePost(int postId, string new_changed_post_text)
         {
+            string newText = new_changed_post_text;
+
+            //pg 484
+            Post post = context.Post.Find(postId)!; //it will never be null in this situation since the postID is passed directly from the post edit form in the partial view _post_on_profile.cshtml
+            post.PostText = newText; //apparently the call to the update isn't required here, it must be acting as a reference object of some kind due to the prev line of code?
+            context.SaveChanges();
+
             ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
