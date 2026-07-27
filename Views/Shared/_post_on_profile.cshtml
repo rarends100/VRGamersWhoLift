@@ -1,21 +1,58 @@
-﻿<!--Model that plugs into this must be ProfileViewModel or the Post Model-->
-<div id="posts">
-    <p>
-        @if (Model.posts != null)
-        {
-            foreach (Post post in Model.posts)
+﻿@using Microsoft.AspNetCore.Identity
+@using VRGamersWhoLift.Models.Abstract
+
+@inject SignInManager<User> signInManager
+
+<!--ATTENTION: Model that plugs into this must be ProfileViewModel-->
+<div id="posts" class="post_shell">
+    <div class="post_text_display ms-sm-1">
+        <p>
+            @if (Model.posts != null)
             {
-                <div>
-                    @post.PostText
+                foreach (Post post in Model.posts)
+                {
+                    <div class="post_container">
+                        @post.PostText
+                    </div>
+
+                    <div class="post_button_row">
+                        <div class="post_three_col_buttons">
+                            <input type="button" value="comment" id="open_post_for_commenting_toggle" /><!--1. TODO: write Javascript that toggles open the div for the comment partial view to display. Then write code to submit the comment changes to the soon to be existent comment controller-->
+                            <div><!--Holds the add comment partial view-->
+
+                            </div>
+                        </div>
+                        <div class="post_three_col_buttons">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <form asp-controller="Post" asp-action="" method="post">
+                                    <input type="hidden" value="@post.PostId" />
+                                    <input type="submit" value="edit" />
+                                </form>
+                            }
+                        </div>
+                        <div class="post_three_col_buttons">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <form asp-controller="Post" asp-action="" method="post">
+                                    <input type="hidden" value="@post.PostId" />
+                                    <input type="submit" value="delete" />
+                                </form>
+                            }
+                        </div>
+                    </div>
+                } 
+                
+            }
+            else
+            {
+                <div class="post_container">
+                    no posts
                 </div>
             }
-        }
-        else
-        {
-            <div>
-                no posts
-            </div>
-        }
-
-    </p>
+        </p>
+        <!--2. TODO: After the comment can be added, make it so that the comments display here on a post, make it so that the comments can be show/hidden/toggled-->
+           
+       
+    </div>
 </div>

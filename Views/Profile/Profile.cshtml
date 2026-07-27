@@ -73,8 +73,10 @@
             </div>
             
             <!--Posts go here-->
-
-            <partial name="~/Views/Shared/_post_on_profile.cshtml" , Model.Child /><!--https://stackoverflow.com/questions/21172595/how-to-pass-model-to-partial-view -> the partial element can take 2 attribute arguments (path, Model)-->
+            <div>
+                <partial name="~/Views/Shared/_post_on_profile.cshtml" , Model.Child /><!--https://stackoverflow.com/questions/21172595/how-to-pass-model-to-partial-view -> the partial element can take 2 attribute arguments (path, Model)-->
+            </div>
+            
 
         </div>
 

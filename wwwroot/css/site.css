@@ -102,6 +102,8 @@ body {
     background-color: darkgreen;
 }
 
+
+
 /**https://www.w3schools.com/howto/howto_css_three_columns.asp*/
 .column_col1_and_3_profile {
     float: left;
@@ -136,7 +138,39 @@ img:hover {
     opacity: 80%;
 }
 
+/**Posts styling*/
+.post_shell {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
+.post_container {
+    background-color: black;
+    margin-top: 15px;
+}
+
+.post_text_display {
+    color: greenyellow;
+    text-wrap: wrap;
+}
+
+.post_button_row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.post_three_col_buttons {
+    float: left;
+    width: 33.33%;
+
+}
+
+
+
+.post_button_style {
+
+}
 
 
 /**sub classes*/
