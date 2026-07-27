@@ -43,22 +43,25 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
-        public IActionResult DeletePost()
+        public IActionResult DeletePost(int postId)
+        {
+
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
+        }
+
+        public IActionResult UpdatePost(int postId)
+        {
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
+        }
+
+        public IActionResult GetCurrentUsersPosts()
         {
             return View("Profile");
         }
 
-        public IActionResult UpdatePost()
-        {
-            return View("Profile");
-        }
-
-        public IActionResult GetPost()
-        {
-            return View("Profile");
-        }
-
-        public IActionResult GetOtherUsersPost()
+        public IActionResult GetOtherUsersPosts()
         {
             //TODO: Only write this method after the functionality to view another users profile is completed in it's most basic way.
             return View("Profile");

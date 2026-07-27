@@ -154,7 +154,7 @@ img:hover {
     text-wrap: wrap;
 }
 
-.post_button_row::after {
+.post_button_row:after {
     content: "";
     display: table;
     clear: both;
@@ -162,16 +162,35 @@ img:hover {
 
 .post_three_col_buttons {
     float: left;
-    width: 33.33%;
+    width: 15%;
 
 }
 
-
+.button_style {
+    color: red;
+    font-weight: bold;
+    background-color: black;
+    border-color: red;
+}
 
 .post_button_style {
 
 }
 
+/**Misc*/
+.pop_box {
+    position: absolute;
+    z-index: 999;
+    left: auto;
+    right: auto;
+    top: auto;
+    botton: auto;
+    width: 500px;
+    height: 250px;
+    border: solid 5px black;
+    background-color: darkslategrey;
+    margin-top: 5px;
+}
 
 /**sub classes*/
 ul.no_bullets {
