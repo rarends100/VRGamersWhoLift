@@ -45,6 +45,9 @@ namespace VRGamersWhoLift.Controllers
 
         public IActionResult DeletePost(int postId)
         {
+            Post post = context.Post.Find(postId)!; //It is never null here
+            context.Post.Remove(post);
+            context.SaveChanges();
 
             ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
