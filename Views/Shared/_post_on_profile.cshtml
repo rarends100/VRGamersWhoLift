@@ -1,0 +1,21 @@
+﻿<!--Model that plugs into this must be ProfileViewModel or the Post Model-->
+<div id="posts">
+    <p>
+        @if (Model.posts != null)
+        {
+            foreach (Post post in Model.posts)
+            {
+                <div>
+                    @post.PostText
+                </div>
+            }
+        }
+        else
+        {
+            <div>
+                no posts
+            </div>
+        }
+
+    </p>
+</div>
