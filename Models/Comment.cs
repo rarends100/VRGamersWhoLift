@@ -5,7 +5,7 @@
 
         public int CommentId { get; set; }
         public int PostId { get; set; }
-        public string text { get; set; }
+        public string Text { get; set; }
 
         public Post Post { get; set; } = null!;
 

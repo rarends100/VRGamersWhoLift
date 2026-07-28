@@ -61,6 +61,11 @@ namespace VRGamersWhoLift.Helpers
 
                 //now that I have the postID I can use it to populate the post values then add that post to the LIst in Post.cs model
 
+
+                //First, Middle, and Last name — May be null, doesn't patter if it is — also, within the architecture I have created it basically never will be.
+                //profile.FirstName = context.Users.Where(u => u.UserName.Contains(profile.UserName)).Select(u => u.First)
+
+                //populate posts for the logged in user
                 foreach(int postID in AllPostTablePostIds)
                 {
                     Post post = new Post();
@@ -69,13 +74,24 @@ namespace VRGamersWhoLift.Helpers
                     post.PostText = context.Post.Where(p => p.PostId == postID).Select(p => p.PostText).FirstOrDefault()!;
                     post.Image = context.Post.Where(p => p.PostId == postID).Select(p => p.Image).FirstOrDefault()!;
 
+
+                    //populate comments on each post for the logged in user
+                    var allCommentIdsForPost = context.Comment.Where(p => p.PostId == postID).Select(c => c.CommentId);
+
+                    foreach (int commentID in allCommentIdsForPost)
+                    {
+                        Comment comment = new Comment();
+                        comment.CommentId = commentID;
+                        //comment.text = 
+                    }
+
                     profile.posts.Add(post);
                      
                 }
 
+               
 
-                //First, Middle, and Last name — May be null, doesn't patter if it is — also, within the architecture I have created it basically never will be.
-                //profile.FirstName = context.Users.Where(u => u.UserName.Contains(profile.UserName)).Select(u => u.First)
+
             }
             catch(SqlException ex)
             {
