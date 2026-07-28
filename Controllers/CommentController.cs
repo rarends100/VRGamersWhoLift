@@ -1,12 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VRGamersWhoLift.Models;
+using VRGamersWhoLift.Models.database;
 
 namespace VRGamersWhoLift.Controllers
 {
     public class CommentController : Controller
     {
-
-        public IActionResult AddComment ()
+        private VRGamersWhoLiftContext context;
+        public CommentController(VRGamersWhoLiftContext _Context)
         {
+            context = _Context;
+
+        }
+        public IActionResult AddComment (string text, int postId)
+        {
+            Comment comment = new Comment();
+            comment.Text = text;
+
+            context.Comment.Add(comment);
+            context.SaveChanges();
+
             return View();
         }
 

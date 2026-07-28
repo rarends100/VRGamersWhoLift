@@ -12,7 +12,7 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260728211012_CommentsTableAdded")]
+    [Migration("20260728213419_CommentsTableAdded")]
     partial class CommentsTableAdded
     {
         /// <inheritdoc />
