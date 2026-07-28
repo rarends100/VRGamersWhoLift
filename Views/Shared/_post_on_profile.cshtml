@@ -17,14 +17,49 @@
 
                     <div class="post_button_row">
                         <div class="post_three_col_buttons">
-                            <input type="button" value="comment" id="open_post_for_commenting_toggle" class="button_style" /><!--1. TODO: write Javascript that toggles open the div for the comment partial view to display. Then write code to submit the comment changes to the soon to be existent comment controller-->
+                            <input type="button" value="comment" id="open_commenting_toggle" class="button_style" /><!--1. TODO: write Javascript that toggles open the div for the comment partial view to display. Then write code to submit the comment changes to the soon to be existent comment controller-->
                             <input type="button" value="show/hide comments" id="show_hide_comments" class="button_style"/>
-                            <div id="add_comment">
+                            <div id="add_comment" class="hidden pop_box">
+                                <input type="button" value="X" class="button_style" id="exit_add_comment_button" />
+                                <form asp-controller="Comment" method="post" asp-action="AddComment">
+                                    <input type="hidden" name="postId" value="@post.PostId"/>
+                                    <input type="hidden" name="postsUserId" value="@post.UserId"/>
 
+                                    <label for="commentText" style="color: black;">Add Comment</label>
+
+                                    <textarea 
+                                        name="commentText"
+                                        cols="50"
+                                        rows="5"></textarea>
+
+                                    <input type="submit" value="Add Comment"/>
+                                </form>
                             </div>
-                            <div id="show_comments">
+                            <div id="comments">
                                 <!--comments on posts edit, delete, add-->
+                                <div class="comment_section_header">
+                                    <h3 class="comment_section_header">Comments</h3>
+                                </div>
+                                
+                                @foreach(Comment comment in Model.Comments)
+                                {
+                                    if(post.PostId == comment.PostId)//This ensures the right comments ONLY show up on the correct posts
+                                    {
+                                        <div class="comment_container">
+                                            <p class="comment_section">@comment.Text</p>
+                                        </div>
+                                        
+                                    }
+                                    <div class="comment_button_row">
+                                        <div class="comment_two_col_buttons">
+                                            <input type="button" value="edit" id="edit_comment_button_toggle" />
+                                        </div>
+                                        <div class="comment_two_col_buttons">
+                                            <input type ="button" value="delete" id="delete_comment_button"/>
+                                        </div>
+                                    </div>
 
+                                }
 
                             </div>
                         </div>
@@ -41,7 +76,7 @@
                                             name="new_changed_post_text"
                                             cols="50"
                                             rows="5"
-                                            >What's on your mind?</textarea>
+                                            >@post.PostText</textarea>
                                         <input type="submit" value="save" class="button_style" />
                                         <div>
                                             <p>Current Post:<br /></p>

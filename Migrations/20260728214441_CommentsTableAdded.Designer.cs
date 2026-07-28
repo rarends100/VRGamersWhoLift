@@ -12,7 +12,7 @@ using VRGamersWhoLift.Models.database;
 namespace VRGamersWhoLift.Migrations
 {
     [DbContext(typeof(VRGamersWhoLiftContext))]
-    [Migration("20260728213419_CommentsTableAdded")]
+    [Migration("20260728214441_CommentsTableAdded")]
     partial class CommentsTableAdded
     {
         /// <inheritdoc />
@@ -245,6 +245,10 @@ namespace VRGamersWhoLift.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

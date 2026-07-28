@@ -5,10 +5,8 @@
 
 // Write your JavaScript code.
 
-
 const profilePhotoChooser = document.querySelector("#profile_photo_chooser");
 const profilePhoto = document.querySelector("#profile_photo");
-
 
 const profileBannerChooser = document.querySelector("#profile_banner_chooser");
 const profileBanner = document.querySelector("#profile_banner");
@@ -16,10 +14,16 @@ const profileBanner = document.querySelector("#profile_banner");
 const newPostToggle = document.querySelector("#new_post_button_toggle");
 const newPost = document.querySelector("#new_post");
 
+
 //parrallell edit posts element node lists
 const editPostClickNodeList = document.querySelectorAll("#toggle_post_edit_form_button");
 const exitEditPostclickNodeList = document.querySelectorAll("#exit_edit_post_button");
 const editPostFormDisplayNodeList = document.querySelectorAll("#edit_post");
+
+//parallell add and edit comments element node lists
+const newCommentToggleList = document.querySelectorAll("#open_commenting_toggle");
+const newCommentFormList = document.querySelectorAll("#add_comment");
+const exitAddCommentClickNodeList = document.querySelectorAll("#exit_add_comment_button");
 
 //Function Definitions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,3 +93,20 @@ if (exitEditPostclickNodeList != null && editPostFormDisplayNodeList != null) {
 }
 
 
+//toggle on/off add comment
+if (newCommentToggleList != null && newCommentFormList != null) {
+    let index = 0;
+    newCommentToggleList.forEach(elem => {
+        toggleSectionOn(elem, newCommentFormList.item(index));
+        newCommentFormList.item(index).scrollIntoView();
+        index++;
+    });
+}
+
+if (exitAddCommentClickNodeList != null && newCommentFormList != null) {
+    let index = 0;
+    exitAddCommentClickNodeList.forEach(elem => {
+        toggleSectionOff(elem, newCommentFormList.item(index));
+        index++;
+    });
+}

@@ -102,6 +102,38 @@ body {
     background-color: darkgreen;
 }
 
+/**comments styling*/
+.comment_section_header {
+    font-weight: bold;
+    background-color: black;
+    width: 150px;
+    margin-top: 20px;
+    
+}
+.comment_container {
+    width: 700px;
+    border: solid 2px black;
+    margin-left: 8px;
+    background-color: #413b3b;
+    margin-top: 2px;
+}
+.comment_section {
+    color: greenyellow;
+    width: 700px;
+    background-color: #413b3b;
+}
+
+.comment_button_row:after {
+    content: "";
+    display: table;
+    width: 400px;
+    clear: both;
+}
+
+.comment_two_col_buttons {
+    float: left;
+    width: 50%;
+}
 
 
 /**https://www.w3schools.com/howto/howto_css_three_columns.asp*/
@@ -109,9 +141,7 @@ body {
     float: left;
     width: 18%;
     margin-top: 100px;
-
     border: solid 2px black;
-
 }
 
 
@@ -171,10 +201,6 @@ img:hover {
     font-weight: bold;
     background-color: black;
     border-color: red;
-}
-
-.post_button_style {
-
 }
 
 /**Misc*/

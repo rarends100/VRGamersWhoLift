@@ -245,6 +245,10 @@ namespace VRGamersWhoLift.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CommentId");
 
                     b.HasIndex("PostId");

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VRGamersWhoLift.Models;
 using VRGamersWhoLift.Models.database;
+using VRGamersWhoLift.Models.ViewModels;
 
 namespace VRGamersWhoLift.Controllers
 {
@@ -12,20 +13,32 @@ namespace VRGamersWhoLift.Controllers
             context = _Context;
 
         }
-        public IActionResult AddComment (string text, int postId)
+        public IActionResult AddComment (string commentText, int postId)
         {
             Comment comment = new Comment();
-            comment.Text = text;
+            comment.Text = commentText;
+            comment.PostId = postId;
+
+            string username = HttpContext.User.Identity!.Name!;
+
+            if(username != null)
+            {
+                comment.UserID = context.User.Where(u => u.UserName!.Contains(username)).Select(u => u.Id).FirstOrDefault()!;
+            }
 
             context.Comment.Add(comment);
             context.SaveChanges();
 
-            return View();
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
         public IActionResult DeleteComment()
         {
-            return View();
+
+
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
 
