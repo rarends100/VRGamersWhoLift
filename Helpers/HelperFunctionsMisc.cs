@@ -80,9 +80,11 @@ namespace VRGamersWhoLift.Helpers
 
                     foreach (int commentID in allCommentIdsForPost)
                     {
-                        Comment comment = new Comment();
-                        comment.CommentId = commentID;
-                        //comment.text = 
+                        Comment commnet = context.Comment.Find(commentID)!;
+                        if (commnet != null)
+                        {
+                            profile.Comments.Add(commnet);
+                        }
                     }
 
                     profile.posts.Add(post);
