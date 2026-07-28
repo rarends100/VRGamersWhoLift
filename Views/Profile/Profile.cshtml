@@ -73,26 +73,11 @@
             </div>
             
             <!--Posts go here-->
-            <div id="posts">
-                <p>
-                    @if(Model.posts != null)
-                    {
-                        foreach(Post post in Model.posts)
-                        {
-                            <div>
-                                @post.PostText
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div>
-                            no posts
-                        </div>
-                    }
-
-                </p>
+            <div>
+                <partial name="~/Views/Shared/_post_on_profile.cshtml" , Model.Child /><!--https://stackoverflow.com/questions/21172595/how-to-pass-model-to-partial-view -> the partial element can take 2 attribute arguments (path, Model)-->
             </div>
+            
+
         </div>
 
 

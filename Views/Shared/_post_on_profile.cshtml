@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using VRGamersWhoLift.Models.Abstract
+
+@inject SignInManager<User> signInManager
+
+<!--ATTENTION: Model that plugs into this must be ProfileViewModel-->
+<div id="posts" class="post_shell">
+    <div class="post_text_display ms-sm-1">
+        <p>
+            @if (Model.posts != null)
+            {
+                foreach (Post post in Model.posts)
+                {
+                    <div class="post_container">
+                        @post.PostText
+                    </div>
+
+                    <div class="post_button_row">
+                        <div class="post_three_col_buttons">
+                            <input type="button" value="comment" id="open_commenting_toggle" class="button_style" /><!--1. TODO: write Javascript that toggles open the div for the comment partial view to display. Then write code to submit the comment changes to the soon to be existent comment controller-->
+                            <input type="button" value="show/hide comments" id="show_hide_comments" class="button_style"/>
+                            <div id="add_comment" class="hidden pop_box">
+                                <input type="button" value="X" class="button_style" id="exit_add_comment_button" />
+                                <form asp-controller="Comment" method="post" asp-action="AddComment">
+                                    <input type="hidden" name="postId" value="@post.PostId"/>
+                                    <input type="hidden" name="postsUserId" value="@post.UserId"/>
+
+                                    <label for="commentText" style="color: black;">Add Comment</label>
+
+                                    <textarea 
+                                        name="commentText"
+                                        cols="50"
+                                        rows="5"></textarea>
+
+                                    <input type="submit" value="Add Comment"/>
+                                </form>
+                            </div>
+                            <div id="comments">
+                                <!--comments on posts edit, delete, add-->
+                                <div class="comment_section_header">
+                                    <h3 class="comment_section_header">Comments</h3>
+                                </div>
+                                
+                                @foreach(Comment comment in Model.Comments)
+                                {
+                                    if(post.PostId == comment.PostId)//This ensures the right comments ONLY show up on the correct posts
+                                    {
+                                        <div class="comment_container">
+                                            <p class="comment_section">@comment.Text</p>
+                                        </div>
+                                        
+                                    }
+                                    <div class="comment_button_row">
+                                        <div class="comment_two_col_buttons">
+                                            <input type="button" value="edit" id="edit_comment_button_toggle" />
+                                        </div>
+                                        <div class="comment_two_col_buttons">
+                                            <input type ="button" value="delete" id="delete_comment_button"/>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="post_three_col_buttons">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <input type="button" id="toggle_post_edit_form_button" value="edit" class="button_style" />
+                                <div class="hidden pop_box" id="edit_post">
+                                    <input type="button" value="X" class="button_style" id="exit_edit_post_button" />
+                                    <form asp-controller="Post" asp-action="UpdatePost" method="post">
+                                        <input type="hidden" value="@post.PostId" name="PostId" />
+
+                                        <textarea 
+                                            name="new_changed_post_text"
+                                            cols="50"
+                                            rows="5"
+                                            >@post.PostText</textarea>
+                                        <input type="submit" value="save" class="button_style" />
+                                        <div>
+                                            <p>Current Post:<br /></p>
+                                            <p>@post.PostText</p>
+                                        </div>
+                                    </form>
+                                   
+                                </div>
+                                
+                            }
+                        </div>
+                        <div class="post_three_col_buttons">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <form asp-controller="Post" asp-action="DeletePost" method="post">
+                                    <input type="hidden" value="@post.PostId" name="PostId"/>
+                                    <input type="submit" value="delete" class="button_style" />
+                                </form>
+                            }
+                        </div>
+                    </div>
+                } 
+                
+            }
+            else
+            {
+                <div class="post_container">
+                    no posts
+                </div>
+            }
+        </p>
+        <!--2. TODO: After the comment can be added, make it so that the comments display here on a post, make it so that the comments can be show/hidden/toggled-->
+           
+       
+    </div>
+</div>

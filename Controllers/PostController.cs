@@ -43,25 +43,38 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
-        public IActionResult DeletePost()
+        public IActionResult DeletePost(int postId)
+        {
+            Post post = context.Post.Find(postId)!; //It is never null here
+            context.Post.Remove(post);
+            context.SaveChanges();
+
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
+        }
+
+        public IActionResult UpdatePost(int postId, string new_changed_post_text)
+        {
+            string newText = new_changed_post_text;
+
+            //pg 484
+            Post post = context.Post.Find(postId)!; //it will never be null in this situation since the postID is passed directly from the post edit form in the partial view _post_on_profile.cshtml
+            post.PostText = newText; //apparently the call to the update isn't required here, it must be acting as a reference object of some kind due to the prev line of code?
+            context.SaveChanges();
+
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
+        }
+
+        public IActionResult GetCurrentUsersPosts()
         {
             return View("Profile");
         }
 
-        public IActionResult UpdatePost()
-        {
-            return View("Profile");
-        }
-
-        public IActionResult GetPost()
-        {
-            return View("Profile");
-        }
-
-        public IActionResult GetOtherUsersPost()
+        public IActionResult GetOtherUsersPosts()
         {
             //TODO: Only write this method after the functionality to view another users profile is completed in it's most basic way.
-            return View("Profile");
+            return View("OtherProfile");
         }
 
     }

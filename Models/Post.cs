@@ -16,5 +16,7 @@ namespace VRGamersWhoLift.Models
         public string UserId { get; set; } = "";
         public int ImageId { get; set; } = -1;
         public Image Image { get; set; } = null!;
+
+        public IEnumerable<Comment> Comments { get; set; } = null!;
     }
 }

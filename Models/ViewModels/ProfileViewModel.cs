@@ -14,6 +14,7 @@
         public List<string> Errors { get; set; } = null!;
 
         public List<Post> posts { get; set; } = new List<Post>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
         //Will likely add more fields like posts and stuff as I continue the design of this webpage
     }
