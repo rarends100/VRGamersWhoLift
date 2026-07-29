@@ -51,8 +51,21 @@
 
                                         <div class="comment_button_row">
                                             <div class="comment_two_col_buttons">
-                                                <input type="button" value="edit" id="edit_comment_button_toggle" />
+                                                <input type="button" value="edit" id="edit_comment_button_toggle_on" />
+                                                <div class="hidden" id="edit_comment_form">
+                                                    <input type="button" id="exit_comment_editing" value="x"/>
+                                                    <form asp-controller="Comment" asp-action="UpdateComment" method="post">
+                                                        <input type="hidden" name="commentID" value="@comment.CommentId" />
+
+                                                        <textarea cols="40"
+                                                                  rows="5"
+                                                                  name="newCommentText">@comment.Text</textarea>
+
+                                                        <input type="submit" value="Save Changes" />
+                                                    </form>
+                                                </div> 
                                             </div>
+
                                             <div class="comment_two_col_buttons">
                                                 <form asp-controller="Comment" asp-action="DeleteComment" method="post">
                                                     <input type="hidden" name="commentID" value="@comment.CommentId"/>

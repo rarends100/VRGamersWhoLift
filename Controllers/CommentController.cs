@@ -51,9 +51,19 @@ namespace VRGamersWhoLift.Controllers
         }
 
 
-        public IActionResult UpdateComment()
+        public IActionResult UpdateComment(string newCommentText, int commentID)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                Comment comment = context.Comment.Find(commentID)!;
+
+                comment.Text = newCommentText;
+                context.SaveChanges();
+            }
+
+
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
 
