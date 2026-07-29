@@ -21,9 +21,14 @@ const exitEditPostclickNodeList = document.querySelectorAll("#exit_edit_post_but
 const editPostFormDisplayNodeList = document.querySelectorAll("#edit_post");
 
 //parallell add and edit comments element node lists
+    //Add
 const newCommentToggleList = document.querySelectorAll("#open_commenting_toggle");
 const newCommentFormList = document.querySelectorAll("#add_comment");
 const exitAddCommentClickNodeList = document.querySelectorAll("#exit_add_comment_button");
+    //Edit
+const editCommentToggleOnNodeList = document.querySelectorAll("#edit_comment_button_toggle_on");
+const exitEditingCommentNodeList = document.querySelectorAll("#exit_comment_editing");
+const commentEditingFormNodeList = document.querySelectorAll("#edit_comment_form");
 
 //Function Definitions ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -107,6 +112,27 @@ if (exitAddCommentClickNodeList != null && newCommentFormList != null) {
     let index = 0;
     exitAddCommentClickNodeList.forEach(elem => {
         toggleSectionOff(elem, newCommentFormList.item(index));
+        index++;
+    });
+}
+
+document.addEventListener("DomContentLoaded", () => {
+    console.log("Value of comment editing node list is " + editCommentToggleOnNodeList);
+});
+//toggle on/off edit comment form
+if (commentEditingFormNodeList != null && editCommentToggleOnNodeList != null) {
+    console.log("Value of comment editing node list is " + editCommentToggleOnNodeList);
+    let index = 0;
+    editCommentToggleOnNodeList.forEach(elem => {
+        toggleSectionOn(elem, commentEditingFormNodeList.item(index));
+        commentEditingFormNodeList.item(index).scrollIntoView();
+        index++;
+    });
+}
+if (commentEditingFormNodeList != null && exitEditingCommentNodeList != null) {
+    let index = 0;
+    exitEditingCommentNodeList.forEach(elem => {
+        toggleSectionOff(elem, commentEditingFormNodeList.item(index));
         index++;
     });
 }
