@@ -6,7 +6,8 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 # Tech Stack
 * Project Type: ASP.NET Core Web App (Model-View-Controller)
 * .NET 8.0
-
+* x-unit -> testing (unit tests) .Net 8.0(Longterm support)
+  
 # Languages
 * C#
 * JavaScript
@@ -18,7 +19,7 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 # Frameworks
 * Microsoft.AspNetCore.Identity - Microsoft identity -> Authentication -> https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=visual-studio
 * EF Core
-* x-unit -> testing (unit tests) .Net 8.0(Longterm support)
+
 
 # Instructions for use
 * clone to visual studio
