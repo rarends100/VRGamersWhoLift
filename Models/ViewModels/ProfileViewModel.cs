@@ -17,5 +17,15 @@
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
         //Will likely add more fields like posts and stuff as I continue the design of this webpage
+
+        public string getUserPhotoAssociatedToPost()
+        {
+            return "";
+        }
+
+        public string getUserPhotoAssociatedToComment()
+        {
+            return "";
+        }
     }
 }
