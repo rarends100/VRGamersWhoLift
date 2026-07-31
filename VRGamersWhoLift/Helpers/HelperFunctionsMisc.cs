@@ -13,7 +13,7 @@ namespace VRGamersWhoLift.Helpers
 
 
         //Call anytime the profile displayed values need to be updated. So far it populates the profile picture
-        public static ProfileViewModel PopulateProfileData(VRGamersWhoLiftContext context, HttpContext HttpContext)
+        public static ProfileViewModel PopulateProfileViewModelData(VRGamersWhoLiftContext context, HttpContext HttpContext)
         {
             ProfileViewModel profile = new ProfileViewModel();
 

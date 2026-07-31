@@ -29,7 +29,7 @@ namespace VRGamersWhoLift.Controllers
             context.Comment.Add(comment);
             context.SaveChanges();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
@@ -43,7 +43,7 @@ namespace VRGamersWhoLift.Controllers
                 context.SaveChanges();
             }
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
 
            
@@ -62,7 +62,7 @@ namespace VRGamersWhoLift.Controllers
             }
 
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 

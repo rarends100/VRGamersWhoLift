@@ -39,7 +39,7 @@ namespace VRGamersWhoLift.Controllers
             context.Post.Add(post);
             context.SaveChanges();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
@@ -49,7 +49,7 @@ namespace VRGamersWhoLift.Controllers
             context.Post.Remove(post);
             context.SaveChanges();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
@@ -62,7 +62,7 @@ namespace VRGamersWhoLift.Controllers
             post.PostText = newText; //apparently the call to the update isn't required here, it must be acting as a reference object of some kind due to the prev line of code?
             context.SaveChanges();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 

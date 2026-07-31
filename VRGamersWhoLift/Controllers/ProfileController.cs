@@ -26,7 +26,7 @@ namespace VRGamersWhoLift.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            ProfileViewModel model = HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel model = HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             model.Errors = new List<string>();
             
             return View(model);
@@ -44,7 +44,7 @@ namespace VRGamersWhoLift.Controllers
             System.Diagnostics.Debug.WriteLine("Hit Profile photo update function");
             List<string> errors = new List<string>();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
 
 
 
@@ -117,42 +117,32 @@ namespace VRGamersWhoLift.Controllers
                     {
                         context.Image.Add(picture);
                         context.SaveChanges(); //NOTE to SELF — do NOT forget this after making changes to the DB in EF Core
+
+                        //https://stackoverflow.com/questions/39322085/how-to-save-iformfile-to-disk
+                        using (Stream fileStream = new FileStream(fullFilePath, FileMode.Create))
+                        {
+                            image.CopyTo(fileStream);
+                            fileStream.Close(); //close the stream to free up resources
+                        }
+                        //profileViewModel.Errors.Clear();
+
+                        //Creates or replaces a file //https://learn.microsoft.com/en-us/dotnet/api/system.io.file.create?view=net-10.0
                     }
                     catch (SqlException ex)
                     {
                         System.Diagnostics.Debug.WriteLine("\n\n SQLException: \n" + ex + "\n\n");
                     }
-
-                }
-
-                try
-                {
-                    //https://stackoverflow.com/questions/39322085/how-to-save-iformfile-to-disk
-                    using (Stream fileStream = new FileStream(fullFilePath, FileMode.Create))
+                    catch(IOException ex)
                     {
-                        image.CopyTo(fileStream);
-                        fileStream.Close(); //close the stream to free up resources
-                    }
-                    //profileViewModel.Errors.Clear();
-
-                    //Creates or replaces a file //https://learn.microsoft.com/en-us/dotnet/api/system.io.file.create?view=net-10.0
-                }
-
-                
-                catch(IOException ex)
-                {
                     System.Diagnostics.Debug.WriteLine("\n\n IOException: \n" + ex + "\n\n" );
+                    }
 
                 }
-
-
-
-
 
 
             }
                 //TODO: solve bug where even though the new profile picture is updated, the old profile picture is not deleted, alternatively I could just assign it to the gallery
-                profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+                profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
 
 
                 return View("Profile", profileViewModel);
@@ -165,10 +155,7 @@ namespace VRGamersWhoLift.Controllers
             System.Diagnostics.Debug.WriteLine("Hit Profile photo update function");
             List<string> errors = new List<string>();
 
-            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
-
-
-
+            ProfileViewModel profileViewModel = Helpers.HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
 
 
             if (image == null)
@@ -237,36 +224,31 @@ namespace VRGamersWhoLift.Controllers
                     {
                         context.Image.Add(picture);
                         context.SaveChanges(); //NOTE to SELF — do NOT forget this after making changes to the DB in EF Core
+
+//                      // Saves File to disk
+                        //https://stackoverflow.com/questions/39322085/how-to-save-iformfile-to-disk
+                        using (Stream fileStream = new FileStream(fullFilePath, FileMode.Create))
+                        {
+                            image.CopyTo(fileStream);
+                            fileStream.Close(); //close the stream to free up resources
+                        }
+
+                        //Creates or replaces a file //https://learn.microsoft.com/en-us/dotnet/api/system.io.file.create?view=net-10.0
                     }
                     catch (SqlException ex)
                     {
                         System.Diagnostics.Debug.WriteLine("\n\n SQLException: \n" + ex + "\n\n");
                     }
-
-                }
-
-                try //Same/ Saves File to disk
-                {
-                    //https://stackoverflow.com/questions/39322085/how-to-save-iformfile-to-disk
-                    using (Stream fileStream = new FileStream(fullFilePath, FileMode.Create))
+                    catch (IOException ex)
                     {
-                        image.CopyTo(fileStream);
-                        fileStream.Close(); //close the stream to free up resources
-                    }
-
-                    //Creates or replaces a file //https://learn.microsoft.com/en-us/dotnet/api/system.io.file.create?view=net-10.0
-                }
-
-
-                catch (IOException ex)
-                {
                     System.Diagnostics.Debug.WriteLine("\n\n IOException: \n" + ex + "\n\n");
+                    }
 
                 }
 
             }
 
-            profileViewModel = HelperFunctionsMisc.PopulateProfileData(context, HttpContext);
+            profileViewModel = HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
 
             return View("Profile", profileViewModel);
         }
