@@ -11,6 +11,9 @@ namespace VRGamersWhoLiftUnitTestsXUNIT
     using VRGamersWhoLift.Models;
     using VRGamersWhoLiftUnitTestsXUNIT;
     using Xunit;
+    using Moq;
+    using Microsoft.AspNetCore.Http;
+
     public class HomeControllerUnitTests
     {
         //HomeContoller
@@ -40,22 +43,5 @@ namespace VRGamersWhoLiftUnitTestsXUNIT
             Assert.IsType<ViewResult>(result);
         }
 
-         /* I don't understand this yet, need to learn more.
-        [Fact]
-        public void HomeController_ReturnsAViewResult_Error()
-        {
-            //Arrange
-            var controller = new HomeController();
-            ErrorViewModel ErrorViewModel = new ErrorViewModel();
-
-            //Act
-            var result = controller.Error();
-
-            //Assert
-            Assert.IsType<ViewResult>(result);
-        }
-         */
-
-        //Authentication Controller
     }
 }
