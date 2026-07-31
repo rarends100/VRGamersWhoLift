@@ -4,7 +4,7 @@ GamersWhoLift: The social platform where gamers track lifts, join fitness-focuse
 
 ~ Implemented automated testing pipelines using xUnit and the AAA pattern to validate core business logic and ensure code reliability.
 
-~In Progress
+~ In Progress
 
 
 # Tech Stack
