@@ -2,13 +2,21 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.database;
+using VRGamersWhoLift.Services;
 
 //File configs middleware for the app
 
 //https://learn.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-10.0 -> turtorial create users and seed data for authorization
 
+
 //creates WebApplicationBuilder object
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+//Here we can register custom services using .AddTransient, .AddSingleton,
+//or .AddScoped<I,T>() ~ <interface, implemnetation> 
+//https://www.youtube.com/watch?v=9J9a77ga9R0 - each possible method determines the service time to live
+builder.Services.AddScoped<IDBContext, DBContext>();
+
 
 // Identity Framework Core Config - enable IdentityUser and IdenentityRole
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -31,7 +39,7 @@ builder.Services.AddDbContext<VRGamersWhoLiftContext>(options => options.UseSqlS
 builder.Configuration.GetConnectionString("VRGamersWhoLiftContext"))); //related to appsettings.json connection string name
 
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -50,8 +58,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseAuthorization();
-
 //calls the method in ConfigureIdentity.cs to preconfigure the roles for seed users
 var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
 using (var scope = scopeFactory.CreateScope())
@@ -59,7 +65,7 @@ using (var scope = scopeFactory.CreateScope())
     await ConfigureIdentity.CreateInitUsersAsync(scope.ServiceProvider);
 }
 
-app.MapControllerRoute( //Identifies Default route
+app.MapControllerRoute( //Identifies Default route — I am calling this middle ware last on purpose
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
