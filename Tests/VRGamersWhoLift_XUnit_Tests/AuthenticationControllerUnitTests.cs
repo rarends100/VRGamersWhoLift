@@ -79,10 +79,14 @@ namespace VRGamersWhoLift_XUnit_Tests
         public void voidAuthenticationController_ReturnsAIActionResult_Login()
         {
             //Arrange
+            var controller = new AuthenticationController(_UserManager, _SignInManager, _context);
+            LoginViewModel model = new LoginViewModel();
 
             //Act
+            var result = controller.Login(model);
 
             //Assert
+            Assert.IsType<Task<IActionResult>>(result);
         }
     }
 }
