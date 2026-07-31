@@ -19,11 +19,12 @@ namespace VRGamersWhoLift.Controllers
             return View();
         }
 
-
+        // I don't understand this yet, need to learn more.
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
