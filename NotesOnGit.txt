@@ -1,0 +1,17 @@
+git add . -- adds the curr dir
+git status -- lists what was added
+
+
+to change git dir structure the .git dir must be moved from the old folder to the desired folder.
+
+Never backup bin/ compiled binaries folder -> It will bloat the project and lead to tons of conflicts on every git commit, bad.  -> 
+use a .gitignore file to prevent this. -> always check with "get add ." to make sure you are staging the correct files to the dir structure in the repo and not backing up the bin/ folders. ->
+
+.gitignore ex: 
+# Avoid tracking compiled folders
+**/bin/
+**/obj/
+
+# Avoid tracking local IDE files
+.vs/
+*.user
