@@ -1,7 +1,11 @@
 # VRGamersWhoLift
 
 GamersWhoLift: The social platform where gamers track lifts, join fitness-focused guilds, discover game-themed workouts, and buy merch/gear.
+
+~ Implemented automated testing pipelines using xUnit and the AAA pattern to validate core business logic and ensure code reliability.
+
 ~In Progress
+
 
 # Tech Stack
 * Project Type: ASP.NET Core Web App (Model-View-Controller)
