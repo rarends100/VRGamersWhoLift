@@ -15,7 +15,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 //Here we can register custom services using .AddTransient, .AddSingleton,
 //or .AddScoped<I,T>() ~ <interface, implemnetation> 
 //https://www.youtube.com/watch?v=9J9a77ga9R0 - each possible method determines the service time to live
-builder.Services.AddScoped<IDBContext, DBContext>();
+builder.Services.AddScoped<IDBContext, DBContext>(); //Does nothing for now, not sure how to use it effectively — this may change
 
 
 // Identity Framework Core Config - enable IdentityUser and IdenentityRole
