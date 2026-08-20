@@ -33,12 +33,14 @@ namespace VRGamersWhoLift.Controllers
 
         [HttpGet]
         [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
-        public IActionResult ViewOtherProfile()
+        public IActionResult ViewOtherProfile(string OtherUserId)
         {
             //TODO: populate this with necessary logic to show other profile and make an other profile razor page,
             //OR if I can find out if it is possible to make the og razor page act as an other profile in a different circumstance
             //Maybe doable with decision logic in the profile.cshtml razor view
-            return View();
+
+            ProfileViewModel model = HelperFunctionsMisc.PopulateProfileViewModelData
+            return View("OtherProfile.cshtml");
         }
 
 
