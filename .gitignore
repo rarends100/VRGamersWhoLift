@@ -5,3 +5,6 @@
 # Avoid tracking local IDE files
 .vs/
 *.user
+
+# Avoid tracking video presentations
+**/videos/
