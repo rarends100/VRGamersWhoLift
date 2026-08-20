@@ -1,3 +1,6 @@
+# Video link showing current state of application in real time
+https://youtu.be/EBQD_MLntio
+
 # VRGamersWhoLift
 
 GamersWhoLift: The social platform where gamers track lifts, join fitness-focused guilds, discover game-themed workouts, and buy merch/gear.
