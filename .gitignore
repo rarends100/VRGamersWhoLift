@@ -6,5 +6,3 @@
 .vs/
 *.user
 
-# Avoid tracking video presentations
-**/videos/
