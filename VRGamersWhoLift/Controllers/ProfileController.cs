@@ -39,8 +39,10 @@ namespace VRGamersWhoLift.Controllers
             //OR if I can find out if it is possible to make the og razor page act as an other profile in a different circumstance
             //Maybe doable with decision logic in the profile.cshtml razor view
 
-            ProfileViewModel model = HelperFunctionsMisc.PopulateProfileViewModelData
-            return View("OtherProfile.cshtml");
+            ProfileViewModel model = HelperFunctionsMisc.PopulateOtherProfileViewModelData(OtherUserId, context);
+            model.Errors = new List<string>();
+
+            return View("OtherProfile.cshtml", model);
         }
 
 

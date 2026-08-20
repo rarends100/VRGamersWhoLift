@@ -14,6 +14,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Profile Page</title>
+        <link rel="stylesheet" href="~/css/site.css"/>
     </head>
     <body>
     
@@ -23,11 +24,15 @@
             <!--Nav div-->
             <div class="profile_nav_outer">
                 <partial name="~/Views/shared/_profileNav.cshtml" />
+                <div>
+                    <partial name="~/Views/Shared/_ProfileSearchbox.cshtml", Model.Child />
+                </div>
             </div>
 
             <div class="profile_banner">
                 <img src="@Url.Content(Model.Banner)" alt="" name="profile_banner" width="1500" height="400" />
             </div>
+            
 
             <input type="button" value="Update Profile Banner" id="profile_banner" class="profile_banner_update_button_pos" />
             <div class="photo_chooser_box hidden"id="profile_banner_chooser" >

@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+
+@model VRGamersWhoLift.Models.ViewModels.ProfileViewModel //pg 258 Murach
+
+<head>
+    <link rel="stylesheet" href="~/css/searchbox.css" />
+    <script src="https://kit.fontawesome.com/517f85bb56.js" crossorigin="anonymous"></script>
+</head>
+
+<div class="search-body">
+    <div class="search-box">
+        <div class="search-box-row">
+            <input type="text" id="search-box-input" placeholder="Find User" autocomplete="off" />
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="result-box">
+            <ul id="user-list">
+                <!--Add foreach statement here-->
+                @foreach(IdentityUser user in Model.AllUsers)
+                {
+                <form asp-action="ViewOtherProfile" asp-controller="Profile" method="post">
+                        <input type="hidden" name="OtherUserId" id="OtherUserId" value="@user.Id" />
+                        <input type="submit" value="@user.UserName"/>
+                </form>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--https://stackoverflow.com/questions/48733775/passing-net-core-model-data-to-external-javascript-->
+

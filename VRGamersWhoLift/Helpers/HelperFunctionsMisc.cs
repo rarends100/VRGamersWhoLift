@@ -5,6 +5,7 @@ using VRGamersWhoLift.Helpers;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using VRGamersWhoLift.Models;
+using VRGamersWhoLift.Models.users;
 
 namespace VRGamersWhoLift.Helpers
 {
@@ -91,7 +92,11 @@ namespace VRGamersWhoLift.Helpers
                      
                 }
 
-               
+                //Get all users so users can search for one another.
+                profile.AllUsers = context.Users
+                    .FromSql($"SELECT * FROM AspNetUsers").ToList(); //https://learn.microsoft.com/en-us/ef/core/querying/sql-queries?tabs=sqlserver
+
+
 
 
             }
@@ -178,6 +183,11 @@ namespace VRGamersWhoLift.Helpers
                     profile.posts.Add(post);
 
                 }
+
+
+                //Get all users so users can search for one another.
+                profile.AllUsers = context.Users
+                    .FromSql($"SELECT * FROM AspNetUsers").ToList(); //https://learn.microsoft.com/en-us/ef/core/querying/sql-queries?tabs=sqlserver
 
 
 

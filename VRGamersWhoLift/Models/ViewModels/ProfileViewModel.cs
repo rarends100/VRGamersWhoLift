@@ -1,4 +1,8 @@
-﻿namespace VRGamersWhoLift.Models.ViewModels
+﻿using Microsoft.AspNetCore.Identity;
+using VRGamersWhoLift.Models.Abstract;
+using VRGamersWhoLift.Models.users;
+
+namespace VRGamersWhoLift.Models.ViewModels
 {
     public class ProfileViewModel
     {
@@ -15,6 +19,8 @@
 
         public List<Post> posts { get; set; } = new List<Post>();
         public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        public List<IdentityUser> AllUsers { get; set; } = new List<IdentityUser>();
 
         //Will likely add more fields like posts and stuff as I continue the design of this webpage
 
