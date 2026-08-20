@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-
+using VRGamersWhoLift.Helpers;
 using VRGamersWhoLift.Models.Abstract;
 using VRGamersWhoLift.Models.users;
 using VRGamersWhoLift.Models.ViewModels;
@@ -59,8 +59,8 @@ namespace VRGamersWhoLift.Controllers
                     var result = await userManager.CreateAsync(user, model.Password); //pg 670 //  Password_1
                     if (result.Succeeded)
                     {
-                        
 
+                        await userManager.AddToRoleAsync(user, RolesControlClass.Member);
                         context.Profile.Add(profile);
                         context.SaveChanges();//pg 484
                         Console.WriteLine("User and profile for new user based on the username, added to the database.");

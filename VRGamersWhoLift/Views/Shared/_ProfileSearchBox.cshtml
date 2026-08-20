@@ -19,7 +19,7 @@
                 <!--Add foreach statement here-->
                 @foreach(IdentityUser user in Model.AllUsers)
                 {
-                <form asp-action="ViewOtherProfile" asp-controller="Profile" method="post">
+                <form asp-action="ViewOtherProfile" asp-controller="Profile" method="get">
                         <input type="hidden" name="OtherUserId" id="OtherUserId" value="@user.Id" />
                         <input type="submit" value="@user.UserName"/>
                 </form>

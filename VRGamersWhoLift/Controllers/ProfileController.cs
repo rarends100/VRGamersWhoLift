@@ -28,7 +28,7 @@ namespace VRGamersWhoLift.Controllers
             ProfileViewModel model = HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
             model.Errors = new List<string>();
             
-            return View(model);
+            return View("Profile", model);
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace VRGamersWhoLift.Controllers
             ProfileViewModel model = HelperFunctionsMisc.PopulateOtherProfileViewModelData(OtherUserId, context);
             model.Errors = new List<string>();
 
-            return View("OtherProfile.cshtml", model);
+            return View("OtherProfile", model);
         }
 
 
