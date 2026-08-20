@@ -4,6 +4,8 @@
     //Tag helpers to generate URLs pg 246
     //Access model props in a view pg 258
 
+    /*This view is for a logged in user to have the functionality to view another users profile.*/
+
     ViewData["Title"] = "Profile Page";
 
 }
@@ -29,27 +31,10 @@
                 <img src="@Url.Content(Model.Banner)" alt="" name="profile_banner" width="1500" height="400" />
             </div>
 
-            <input type="button" value="Update Profile Banner" id="profile_banner" class="profile_banner_update_button_pos" />
-            <div class="photo_chooser_box hidden"id="profile_banner_chooser" >
-                <partial name="~/Views/Shared/_uploadProfileBannerImage.cshtml" />
-            </div>
             <img src="@Url.Content(Model.Picture)" alt="profile_photo" name="profile_photo" id="profile_photo" width="200" height="200" class="profile_photo_circle" />
         </div>
         <h1>@Model.FirstName @Model.LastName</h1>
         <p>Profile page</p>
-        <div class="photo_chooser_box hidden" id="profile_photo_chooser">
-            <partial name="~/Views/Shared/_uploadProfileImage.cshtml" /> <!--https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-10.0-->
-            <span style="color: red; margin-left: 100px; background-color: black;">
-                @if (@Model.Errors != null && @Model.Errors.Count != 0)
-                {
-                    foreach (string error in @Model.Errors)
-                    {
-                        @error
-                        ;
-                    }
-                }
-            </span>
-        </div>
     </div>
     
 
@@ -61,20 +46,10 @@
        
         <!--posts col 2-->
         <div class="column_profile_col2">
-            <!--add new post-->
-            <div>
-                <input type="button" value="Add New Post" id="new_post_button_toggle" />
-                <div id="new_post" class="hidden">
-                    <partial name="~/Views/Shared/_addNewPost.cshtml" />
-                </div>
-            </div>
-            
             <!--Posts go here-->
             <div>
                 <partial name="~/Views/Shared/_post_on_profile.cshtml" , Model.Child /><!--https://stackoverflow.com/questions/21172595/how-to-pass-model-to-partial-view -> the partial element can take 2 attribute arguments (path, Model)-->
             </div>
-            
-
         </div>
 
 

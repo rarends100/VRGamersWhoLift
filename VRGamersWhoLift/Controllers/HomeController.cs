@@ -1,6 +1,5 @@
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VRGamersWhoLift.Models;
 
 namespace VRGamersWhoLift.Controllers
 {
@@ -8,12 +7,14 @@ namespace VRGamersWhoLift.Controllers
     {
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VRGamersWhoLift.Helpers;
 using VRGamersWhoLift.Models;
 using VRGamersWhoLift.Models.database;
@@ -17,7 +18,7 @@ namespace VRGamersWhoLift.Controllers
 
         }
 
-
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult AddPost(string postTextContent)
         {
             //TODO write method
@@ -43,6 +44,7 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult DeletePost(int postId)
         {
             Post post = context.Post.Find(postId)!; //It is never null here
@@ -53,6 +55,7 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult UpdatePost(int postId, string new_changed_post_text)
         {
             string newText = new_changed_post_text;

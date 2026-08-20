@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using VRGamersWhoLift.Models.database;
-
-using VRGamersWhoLift.Models;
-using VRGamersWhoLift.Models.users;
-
-using VRGamersWhoLift.Helpers;
-
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using VRGamersWhoLift.Helpers;
+using VRGamersWhoLift.Models;
+using VRGamersWhoLift.Models.database;
+using VRGamersWhoLift.Models.users;
 using VRGamersWhoLift.Models.ViewModels;
 
 
@@ -24,6 +22,7 @@ namespace VRGamersWhoLift.Controllers
 
         //Init load profile
         [HttpGet]
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult Profile()
         {
             ProfileViewModel model = HelperFunctionsMisc.PopulateProfileViewModelData(context, HttpContext);
@@ -32,12 +31,23 @@ namespace VRGamersWhoLift.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
+        public IActionResult ViewOtherProfile()
+        {
+            //TODO: populate this with necessary logic to show other profile and make an other profile razor page,
+            //OR if I can find out if it is possible to make the og razor page act as an other profile in a different circumstance
+            //Maybe doable with decision logic in the profile.cshtml razor view
+            return View();
+        }
+
 
 
 
         //updates profile picture
         //https://learn.microsoft.com/en-us/aspnet/web-pages/overview/ui-layouts-and-themes/9-working-with-images
         [HttpPost]
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public  IActionResult ProfilePhotoUpdate(IFormFile image)
         {
 
@@ -62,7 +72,7 @@ namespace VRGamersWhoLift.Controllers
                 //Get the current logged in user — The user that wants to add the photo
                 //string UserName = HttpContext.User.Identity.Name; //Now handled by the ProfileViewModel
 
-                var loggedInUser = context.Users.Where(u => u.UserName.Contains(profileViewModel.UserName)).ToList();
+                var loggedInUser = context.Users.Where(u => u.UserName!.Contains(profileViewModel.UserName)).ToList();
 
                 //string appRoot = AppContext.BaseDirectory;
 
@@ -70,7 +80,7 @@ namespace VRGamersWhoLift.Controllers
                 string fullFilePath = ".\\wwwroot\\UserPhotos\\" + profileViewModel.UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
                 string dbEntryPath = "\\UserPhotos\\" + profileViewModel.UserName + "\\" + image.FileName; //The path that will be called by img elements
 
-                string directoryPath = Path.GetDirectoryName(fullFilePath);
+                string directoryPath = Path.GetDirectoryName(fullFilePath)!;
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -150,6 +160,7 @@ namespace VRGamersWhoLift.Controllers
 
         //Updates profile banner
         [HttpPost]
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult ProfileBannerUpdate(IFormFile image)
         {
             System.Diagnostics.Debug.WriteLine("Hit Profile photo update function");
@@ -170,7 +181,7 @@ namespace VRGamersWhoLift.Controllers
                 //Get the current logged in user — The user that wants to add the photo
                 //string UserName = HttpContext.User.Identity.Name; //Now handled by the ProfileViewModel
 
-                var loggedInUser = context.Users.Where(u => u.UserName.Contains(profileViewModel.UserName)).ToList();
+                var loggedInUser = context.Users.Where(u => u.UserName!.Contains(profileViewModel.UserName)).ToList();
 
                 //string appRoot = AppContext.BaseDirectory;
 
@@ -178,7 +189,7 @@ namespace VRGamersWhoLift.Controllers
                 string fullFilePath = ".\\wwwroot\\UserPhotos\\" + profileViewModel.UserName + "\\" + image.FileName; //move one up from Controller dir (current dir) to the wwwroot dir (safe for storing user files dir)
                 string dbEntryPath = "\\UserPhotos\\" + profileViewModel.UserName + "\\" + image.FileName; //The path that will be called by img elements
 
-                string directoryPath = Path.GetDirectoryName(fullFilePath);
+                string directoryPath = Path.GetDirectoryName(fullFilePath)!;
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);

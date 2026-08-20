@@ -1,18 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VRGamersWhoLift.Models;
 using VRGamersWhoLift.Models.database;
 using VRGamersWhoLift.Models.ViewModels;
+using VRGamersWhoLift.Helpers;
 
 namespace VRGamersWhoLift.Controllers
 {
     public class CommentController : Controller
     {
         private VRGamersWhoLiftContext context;
+
         public CommentController(VRGamersWhoLiftContext _Context)
         {
             context = _Context;
 
         }
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")] //pg654 Murach's ASP.NET Core MVC,  2nd Edition and //https://learn.microsoft.com/en-us/aspnet/core/mvc/security/authorization/roles?view=aspnetcore-10.0
         public IActionResult AddComment (string commentText, int postId)
         {
             Comment comment = new Comment();
@@ -33,6 +37,7 @@ namespace VRGamersWhoLift.Controllers
             return View("/Views/Profile/Profile.cshtml", profileViewModel);
         }
 
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult DeleteComment(int commentID)
         {
             if (ModelState.IsValid)
@@ -50,7 +55,7 @@ namespace VRGamersWhoLift.Controllers
 
         }
 
-
+        [Authorize(Roles = $"{RolesControlClass.Member}, {RolesControlClass.Coach}, {RolesControlClass.Administrator}")]
         public IActionResult UpdateComment(string newCommentText, int commentID)
         {
             if (ModelState.IsValid)
